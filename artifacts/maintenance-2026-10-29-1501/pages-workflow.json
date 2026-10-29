@@ -1,0 +1,21 @@
+{
+  "conclusion": "success",
+  "databaseId": 40829660615,
+  "headSha": "fae17005b6bf36041c9bba9b36c770e3c2c1d0e3",
+  "jobs": [
+    {
+      "name": "build",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40829660615/job/123300689457"
+    },
+    {
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40829660615/job/123301005815"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40829660615"
+}

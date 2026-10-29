@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "releaseId": 427532256,
+  "tag": "v0.1.4",
+  "draft": true,
+  "sourceCommit": "fae17005b6bf36041c9bba9b36c770e3c2c1d0e3",
+  "assets": [
+    {
+      "browser_download_url": "https://github.com/Lui02372/aiworkjob/releases/download/untagged-8ce1e6418b9c859c5fad/aiworkjob-0.1.4-android.apk",
+      "digest": "sha256:923c92c91c825eae95f492a8192150cf9741239f680aa2c214860e505d8ce759",
+      "name": "aiworkjob-0.1.4-android.apk",
+      "size": 3155081
+    },
+    {
+      "browser_download_url": "https://github.com/Lui02372/aiworkjob/releases/download/untagged-8ce1e6418b9c859c5fad/aiworkjob-0.1.4-webapp.zip",
+      "digest": "sha256:bb923ae99316efe37e27f060f455460e2d67f62a0833397567e51925fa17228c",
+      "name": "aiworkjob-0.1.4-webapp.zip",
+      "size": 5403226
+    },
+    {
+      "browser_download_url": "https://github.com/Lui02372/aiworkjob/releases/download/untagged-8ce1e6418b9c859c5fad/release-manifest.json",
+      "digest": "sha256:021429ee18fefb44d532676e1c7b02a7fe6cd2304594772021f748569b33ca39",
+      "name": "release-manifest.json",
+      "size": 581
+    },
+    {
+      "browser_download_url": "https://github.com/Lui02372/aiworkjob/releases/download/untagged-8ce1e6418b9c859c5fad/SHA256SUMS.txt",
+      "digest": "sha256:a4dbc2c0c1fc0ed0428cebde57be01b0af61d6d17f95413b43d838ba81411dce",
+      "name": "SHA256SUMS.txt",
+      "size": 189
+    }
+  ],
+  "checks": "all four downloaded draft assets match local bytes, GitHub digests and sizes; target is the pushed source commit"
+}

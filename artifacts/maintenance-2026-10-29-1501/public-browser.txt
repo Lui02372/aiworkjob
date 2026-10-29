@@ -1,0 +1,1 @@
+{"status": "passed", "checks": 19, "url": "https://lui02372.github.io/aiworkjob/"}
