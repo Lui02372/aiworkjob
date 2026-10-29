@@ -1,0 +1,28 @@
+{
+  "url": "https://lui02372.github.io/aiworkjob/",
+  "status": "passed",
+  "version": "0.1.5",
+  "count": 19,
+  "checks": [
+    "deployed public configuration matches the release version and static feed mode",
+    "public web app opens without owner login and shows current feed data",
+    "public web saved jobs survive reload",
+    "real application URL and explicit current-source review are available",
+    "shared generated app page opens in a separate unauthenticated browser",
+    "deployed studio preserves evidence saved in two browser tabs",
+    "deployed studio rejects a conflicting edit while preserving pending input",
+    "public product sample opens while unconnected checkout stays disabled",
+    "deployed mobile page has no JavaScript errors",
+    "main workspace keeps pending proposal and merges an independently saved job across tabs and reload",
+    "same-workspace conflict preserves pending input and the other window saved result",
+    "main storage failure preserves text, avoids false success and allows a later successful save",
+    "missed storage notifications cannot erase a different saved job or leave orphan snapshots",
+    "main writes wait for an exclusive browser lock and merge the latest storage inside it",
+    "editing during a queued save keeps newer input pending instead of falsely marking it saved",
+    "blurred profile edits survive another window update and merge with saved-job changes",
+    "conflicting profile saves retain the pending form without overwriting the newer profile",
+    "storage clear preserves pending input and stale editing cannot resurrect deleted work",
+    "mobile main concurrency flow has no script errors or horizontal overflow"
+  ],
+  "checkedAt": "2026-10-29T17:20:07"
+}

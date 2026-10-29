@@ -1,0 +1,190 @@
+{
+  "conclusion": "success",
+  "headSha": "29630b2e888fee54f3397fc23544d1d298a9f8e1",
+  "jobs": [
+    {
+      "completedAt": "2026-10-29T08:18:13Z",
+      "conclusion": "success",
+      "databaseId": 123337074410,
+      "name": "build",
+      "startedAt": "2026-10-29T08:16:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T08:16:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T08:16:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:16:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v7",
+          "number": 2,
+          "startedAt": "2026-10-29T08:16:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:00Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v7",
+          "number": 3,
+          "startedAt": "2026-10-29T08:16:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:02Z",
+          "conclusion": "success",
+          "name": "Run npm test",
+          "number": 4,
+          "startedAt": "2026-10-29T08:17:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:03Z",
+          "conclusion": "success",
+          "name": "Run npm run refresh:feed",
+          "number": 5,
+          "startedAt": "2026-10-29T08:17:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:03Z",
+          "conclusion": "success",
+          "name": "Run npm run build:pages",
+          "number": 6,
+          "startedAt": "2026-10-29T08:17:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:08Z",
+          "conclusion": "success",
+          "name": "Run python -m pip install -r requirements-dev.txt",
+          "number": 7,
+          "startedAt": "2026-10-29T08:17:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:42Z",
+          "conclusion": "success",
+          "name": "Run python -m playwright install --with-deps chromium",
+          "number": 8,
+          "startedAt": "2026-10-29T08:17:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:17:57Z",
+          "conclusion": "success",
+          "name": "Run python tests/check_pages.py",
+          "number": 9,
+          "startedAt": "2026-10-29T08:17:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:02Z",
+          "conclusion": "success",
+          "name": "Run python tests/check_commerce.py",
+          "number": 10,
+          "startedAt": "2026-10-29T08:17:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:07Z",
+          "conclusion": "success",
+          "name": "Run python tests/check_account_manager.py",
+          "number": 11,
+          "startedAt": "2026-10-29T08:18:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:07Z",
+          "conclusion": "success",
+          "name": "Run python tests/check_maintenance.py",
+          "number": 12,
+          "startedAt": "2026-10-29T08:18:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:07Z",
+          "conclusion": "success",
+          "name": "Run actions/configure-pages@v6",
+          "number": 13,
+          "startedAt": "2026-10-29T08:18:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:09Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-pages-artifact@v5",
+          "number": 14,
+          "startedAt": "2026-10-29T08:18:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:10Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@v7",
+          "number": 27,
+          "startedAt": "2026-10-29T08:18:09Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:10Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v7",
+          "number": 28,
+          "startedAt": "2026-10-29T08:18:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:10Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 29,
+          "startedAt": "2026-10-29T08:18:10Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40841003584/job/123337074410"
+    },
+    {
+      "completedAt": "2026-10-29T08:18:38Z",
+      "conclusion": "success",
+      "databaseId": 123337610441,
+      "name": "deploy",
+      "startedAt": "2026-10-29T08:18:17Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-29T08:18:19Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-29T08:18:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:36Z",
+          "conclusion": "success",
+          "name": "Publish verified app",
+          "number": 2,
+          "startedAt": "2026-10-29T08:18:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-29T08:18:36Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 3,
+          "startedAt": "2026-10-29T08:18:36Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40841003584/job/123337610441"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/Lui02372/aiworkjob/actions/runs/40841003584"
+}

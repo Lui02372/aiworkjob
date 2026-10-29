@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "version": "0.1.5",
+  "authenticated": false,
+  "assets": [
+    {
+      "name": "aiworkjob-0.1.5-android.apk",
+      "url": "https://github.com/Lui02372/aiworkjob/releases/download/v0.1.5/aiworkjob-0.1.5-android.apk",
+      "status": 200,
+      "bytes": 3155081,
+      "sha256": "341c778a0dd011328e0699c0e11b905e57acada698110d38e4fff1950e123887"
+    },
+    {
+      "name": "aiworkjob-0.1.5-webapp.zip",
+      "url": "https://github.com/Lui02372/aiworkjob/releases/download/v0.1.5/aiworkjob-0.1.5-webapp.zip",
+      "status": 200,
+      "bytes": 5404055,
+      "sha256": "ad2e4737a58efb7ae6dc6eea45c11192ddb724f05e78b8f6f0f9217abf860ffa"
+    },
+    {
+      "name": "release-manifest.json",
+      "url": "https://github.com/Lui02372/aiworkjob/releases/download/v0.1.5/release-manifest.json",
+      "status": 200,
+      "bytes": 581,
+      "sha256": "a0fb77001bb9a38e8bd4321b649905b9418824b4a4d256965dff1026bcaf19d0"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/Lui02372/aiworkjob/releases/download/v0.1.5/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 189,
+      "sha256": "447d9365ba76f4d7aa8c10f055fae7806134a42ae0cfa0b00e6174099f15495b"
+    }
+  ]
+}
