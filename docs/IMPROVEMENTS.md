@@ -70,3 +70,13 @@
 검증 도구의 CSP 비호환 문자열 대기를 locator assertion으로 바꾸고, Android 검사의 시작 화면을 명시했다. `emulator-5562`의 일시 연결 중단으로 최종 캡처가 실패한 실행은 통과 보고서로 사용하지 않았다. 안정된 `emulator-5560`에서 이전 개발용 APK를 `install -r -d`로 테스트 기준 상태에 돌린 뒤 모든 기존 저장값이 같은지 확인하고 업데이트 검사를 완료했다. 앱 삭제나 데이터 초기화는 수행하지 않았다. 최종 업데이트 보고서에는 경고가 없다.
 
 이번 기능 개선은 위 결함 1건이다. 실제 지원·메시지·계약·납품 제출·금전 이동은 수행하지 않았다. 저장은 같은 기기·브라우저 범위이며 클라우드 동기화, 서버 LLM, 공고별 완성 앱 자동 개발, 결제 정산은 계속 미연결이다. 자동 개발 날짜 제한과 기존 공고 갱신 workflow는 변경하지 않았다.
+
+## 2026-10-29 12:01 후속 점검: 중단된 0.1.2 공개 완료
+
+11시 실행의 프로세스가 남아 있어 먼저 중복 작업 여부를 확인했다. Orca 터미널은 모델 용량 오류 뒤 입력 대기 상태였으며, 코드 수정과 패키징은 끝났지만 v0.1.2가 초안으로 남아 있었다. 진행 중인 수정은 없었다. 새 기능 개선이나 추가 버전을 만들지 않고 기존 초안의 공개 절차를 이어받았다.
+
+공개 v0.1.1의 APK·ZIP을 비로그인 다운로드하여 해시를 확인했다. 이어 v0.1.2 초안 파일 네 개를 내려받아 기존 패키지와 바이트 단위로 비교했다. package/config/API/version.properties, APK 내부 웹 자산, ZIP 내부 서버·웹·APK의 일치를 확인했다. APK versionName 0.1.2·versionCode 3과 기존 개발 서명, API 36 emulator-5560의 설치 버전을 읽기 전용으로 확인했다. 이전 실행의 Android 10개 및 업데이트·기존 데이터 보존 6개 결과는 그대로 유지했다.
+
+이번 실행의 검사: `npm test` 35개, `npm run build:pages`, `python tests/check_pages.py` 13개, `python tests/check_release.py 0.1.2` 6개, 실제 공개 URL의 `python tests/check_public.py` 8개 통과. 원문 링크·수동 모집 확인·재로딩 보존·비로그인 제작 화면·두 창 저장 및 충돌 차단을 확인했다. Pages workflow [40805672363](https://github.com/Lui02372/aiworkjob/actions/runs/40805672363)의 build/deploy도 성공했다.
+
+12:04 KST에 기존 초안을 수정 커밋 `34a9a25`로 고정하여 [v0.1.2](https://github.com/Lui02372/aiworkjob/releases/tag/v0.1.2)를 공개했다. 기존 파일을 다시 올리거나 교체하지 않았다. 공개된 APK·ZIP·매니페스트·해시의 네 URL을 인증 없이 다시 다운로드하여 초안 파일과 같은지 확인했다. 근거는 `artifacts/maintenance-2026-10-29-1201/{draft-verification,public-downloads,public-report,release-report}.json`이다. 검사를 다시 실행한 사실이나 공개 절차 완료를 새 기능 개선으로 세지 않는다.

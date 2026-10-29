@@ -8,7 +8,8 @@
 | Chrome PC·모바일의 기존 전체 흐름 | 이전 점검의 27개 시나리오 통과 기록 | `artifacts/browser-report.json`; 이번에는 변경 범위의 아래 회귀 검사를 실행 |
 | Android API 36 에뮬레이터 | 10개 검사 통과, 설치 버전 0.1.2 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
 | 프로젝트 하위 경로의 공개 웹·스튜디오 동시 편집 | 0.1.2의 13개 검사 통과 | `artifacts/pages-report.json` |
-| 게시 전 공개 v0.1.1·별도 비로그인 브라우저 | 사전 점검 5개 검사 통과; 스튜디오 작업 소실은 별도 재현 | `artifacts/maintenance-2026-10-29-1101/baseline-public-check.json` |
+| 공개 웹·별도 비로그인 브라우저 | v0.1.2 배포 후 8개 검사 통과; 이전 v0.1.1 실패 재현 보존 | `artifacts/maintenance-2026-10-29-1201/public-report.json` |
+| GitHub 공개 릴리스 | v0.1.2 파일 네 개를 비로그인 다운로드하여 해시·바이트 일치 확인 | `artifacts/maintenance-2026-10-29-1201/public-downloads.json` |
 | 0.1.1 → 0.1.2 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
 | 배포 ZIP 압축 해제 후 실행 | 0.1.2의 6개 검사 통과, 웹·APK 자산과 버전 일치 | `artifacts/release-0.1.2-report.json` |
 | 네이티브 실제 공고 수집 | 97건, 개별 공고 open 상태 확인 | Android 검증 보고서. 확인 시점의 수치 |

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "version": "0.1.2",
+  "checks": [
+    {
+      "file": "aiworkjob-0.1.2-android.apk",
+      "sha256": "b1563b5ecf690631dcc9afc19edb61f893238dedba8eb4f30f5a0eb71bed320f",
+      "bytes": 3138886
+    },
+    {
+      "file": "aiworkjob-0.1.2-webapp.zip",
+      "sha256": "6b5e7c053f8001404fd9baaf82f0d10e9ff358fb05622dead9b06056fa3d7346",
+      "bytes": 5351274
+    },
+    {
+      "file": "release-manifest.json",
+      "sha256": "90e64a7b14d1ea310df2b68ee14720751d10203c748336cbcb78a94324e74542",
+      "bytes": 581
+    },
+    {
+      "file": "SHA256SUMS.txt",
+      "sha256": "17fcc60694cbf8a605cb657663ec3f62d7b7bca0414e4fcd515ab95395d77ff1",
+      "bytes": 189
+    }
+  ],
+  "sourceAssetsMatch": true
+}

@@ -17,5 +17,5 @@
     "studio saves use an exclusive browser lock before updating storage",
     "all five saved studio records and the latest review survive a reload"
   ],
-  "checkedAt": "2026-10-29T11:11:16"
+  "checkedAt": "2026-10-29T12:03:46"
 }
