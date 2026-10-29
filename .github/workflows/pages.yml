@@ -26,6 +26,13 @@ jobs:
       - run: python tests/check_pages.py
         env:
           AIWORKJOB_BROWSER_CHANNEL: ''
+      - run: python tests/check_commerce.py
+        env:
+          AIWORKJOB_BROWSER_CHANNEL: ''
+      - run: python tests/check_account_manager.py
+        env:
+          AIWORKJOB_BROWSER_CHANNEL: ''
+      - run: python tests/check_maintenance.py
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

@@ -1,71 +1,140 @@
 flowchart LR
  n0["README.md"]
- n1["android/app/src/main/AndroidManifest.xml"]
- n2["android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java"]
- n3["android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java"]
- n4["android/app/src/main/res/drawable/ic_launcher.xml"]
- n5["android/app/src/main/res/values-v27/styles.xml"]
- n6["android/app/src/main/res/values/styles.xml"]
- n7["api.mjs"]
- n8["artifacts/android-report.json"]
- n9["artifacts/android-update-report.json"]
- n10["artifacts/browser-report.json"]
- n11["artifacts/domain-report.json"]
- n12["artifacts/maintenance-registration.json"]
- n13["artifacts/pages-report.json"]
- n14["artifacts/public-report.json"]
- n15["artifacts/quality-report.json"]
- n16["artifacts/release-0.1.0-report.json"]
- n17["artifacts/release-0.1.1-report.json"]
- n18["docs/DESIGN.md"]
- n19["docs/IMPROVEMENTS.md"]
- n20["docs/ITERATION_PROMPT.md"]
- n21["docs/MAINTENANCE_PROMPT.md"]
- n22["docs/RESEARCH.md"]
- n23["docs/VALIDATION.md"]
- n24["docs/architecture.json"]
- n25["package.json"]
- n26["server.mjs"]
- n27["tests/check_android.py"]
- n28["tests/check_browser.py"]
- n29["tests/check_pages.py"]
- n30["tests/check_public.py"]
- n31["tests/check_release.py"]
- n32["tests/check_update.py"]
- n33["tests/domain.test.mjs"]
- n34["tools/build-pages.mjs"]
- n35["tools/build-site.mjs"]
- n36["tools/codevisualization-viewer.html"]
- n37["tools/codevisualization.mjs"]
- n38["tools/maintenance_due.py"]
- n39["tools/package_release.py"]
- n40["tools/quality.mjs"]
- n41["tools/refresh-feed.mjs"]
- n42["tools/validate-artifact.mjs"]
- n43["web/app.js"]
- n44["web/catalog.js"]
- n45["web/config.js"]
- n46["web/deliverable.css"]
- n47["web/deliverable.html"]
- n48["web/deliverable.js"]
- n49["web/domain.js"]
- n50["web/icons.js"]
- n51["web/index.html"]
- n52["web/snapshot.json"]
- n53["web/studio.css"]
- n54["web/studio.html"]
- n55["web/studio.js"]
- n56["web/styles.css"]
- n26 -->|import| n7
- n33 -->|import| n49
- n33 -->|import| n7
- n37 -->|file-url| n36
- n41 -->|import| n7
- n43 -->|import| n45
- n43 -->|import| n44
- n43 -->|import| n49
- n43 -->|import| n50
- n48 -->|import| n49
- n49 -->|import| n44
- n55 -->|import| n45
- n55 -->|import| n49
+ n1["account-manager.mjs"]
+ n2["android/app/src/main/AndroidManifest.xml"]
+ n3["android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java"]
+ n4["android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java"]
+ n5["android/app/src/main/res/drawable/ic_launcher.xml"]
+ n6["android/app/src/main/res/values-v27/styles.xml"]
+ n7["android/app/src/main/res/values/styles.xml"]
+ n8["api.mjs"]
+ n9["artifacts/account-manager-report.json"]
+ n10["artifacts/android-report.json"]
+ n11["artifacts/android-update-report.json"]
+ n12["artifacts/automation-2026-10-29.json"]
+ n13["artifacts/browser-report.json"]
+ n14["artifacts/codevisualization-0.1.3-report.json"]
+ n15["artifacts/commerce-report.json"]
+ n16["artifacts/cross-app-before.json"]
+ n17["artifacts/cross-app-report.json"]
+ n18["artifacts/domain-report.json"]
+ n19["artifacts/maintenance-2026-10-29-1101/android-baseline-restore.json"]
+ n20["artifacts/maintenance-2026-10-29-1101/baseline-public-check.json"]
+ n21["artifacts/maintenance-2026-10-29-1101/baseline-release-check.json"]
+ n22["artifacts/maintenance-2026-10-29-1101/baseline-release-manifest.json"]
+ n23["artifacts/maintenance-2026-10-29-1101/reproduce_studio_conflict.py"]
+ n24["artifacts/maintenance-2026-10-29-1101/studio-conflict-before.json"]
+ n25["artifacts/maintenance-2026-10-29-1201/draft-verification.json"]
+ n26["artifacts/maintenance-2026-10-29-1201/public-downloads.json"]
+ n27["artifacts/maintenance-2026-10-29-1201/public-report.json"]
+ n28["artifacts/maintenance-2026-10-29-1201/published-release.json"]
+ n29["artifacts/maintenance-2026-10-29-1201/release-report.json"]
+ n30["artifacts/packaging-check-correction.json"]
+ n31["artifacts/pages-report.json"]
+ n32["artifacts/product/manifest.json"]
+ n33["artifacts/public-report.json"]
+ n34["artifacts/quality-report.json"]
+ n35["artifacts/release-0.1.0-report.json"]
+ n36["artifacts/release-0.1.1-report.json"]
+ n37["artifacts/release-0.1.2-report.json"]
+ n38["artifacts/release-0.1.3-manifest.json"]
+ n39["artifacts/release-0.1.3-report.json"]
+ n40["commerce.mjs"]
+ n41["docs/DESIGN.md"]
+ n42["docs/IMPROVEMENTS.md"]
+ n43["docs/ITERATION_PROMPT.md"]
+ n44["docs/MAINTENANCE_PROMPT.md"]
+ n45["docs/MONETIZATION.md"]
+ n46["docs/RESEARCH.md"]
+ n47["docs/VALIDATION.md"]
+ n48["docs/architecture.json"]
+ n49["docs/reviews/0.1.2.md"]
+ n50["docs/reviews/0.1.3.md"]
+ n51["integrations/README.md"]
+ n52["integrations/account-manager-client.mjs"]
+ n53["package.json"]
+ n54["product-kit.mjs"]
+ n55["server.mjs"]
+ n56["tests/account-manager.test.mjs"]
+ n57["tests/browser_support.py"]
+ n58["tests/check_account_manager.py"]
+ n59["tests/check_android.py"]
+ n60["tests/check_browser.py"]
+ n61["tests/check_commerce.py"]
+ n62["tests/check_cross_app.mjs"]
+ n63["tests/check_maintenance.py"]
+ n64["tests/check_pages.py"]
+ n65["tests/check_public.py"]
+ n66["tests/check_release.py"]
+ n67["tests/check_update.py"]
+ n68["tests/commerce.test.mjs"]
+ n69["tests/domain.test.mjs"]
+ n70["tests/fixture-server.mjs"]
+ n71["tools/build-pages.mjs"]
+ n72["tools/build-product.mjs"]
+ n73["tools/build-site.mjs"]
+ n74["tools/codevisualization-viewer.html"]
+ n75["tools/codevisualization.mjs"]
+ n76["tools/maintenance_due.py"]
+ n77["tools/package_release.py"]
+ n78["tools/quality.mjs"]
+ n79["tools/refresh-feed.mjs"]
+ n80["tools/validate-artifact.mjs"]
+ n81["web/account-manager-ui.js"]
+ n82["web/app.js"]
+ n83["web/catalog.js"]
+ n84["web/config.js"]
+ n85["web/deliverable.css"]
+ n86["web/deliverable.html"]
+ n87["web/deliverable.js"]
+ n88["web/domain.js"]
+ n89["web/icons.js"]
+ n90["web/index.html"]
+ n91["web/kit-sample.html"]
+ n92["web/product.js"]
+ n93["web/snapshot.json"]
+ n94["web/store.css"]
+ n95["web/store.html"]
+ n96["web/store.js"]
+ n97["web/studio.css"]
+ n98["web/studio.html"]
+ n99["web/studio.js"]
+ n100["web/styles.css"]
+ n1 -->|import| n52
+ n1 -->|import| n88
+ n40 -->|import| n92
+ n40 -->|import| n54
+ n54 -->|import| n92
+ n55 -->|import| n8
+ n55 -->|import| n40
+ n55 -->|import| n1
+ n56 -->|import| n1
+ n56 -->|import| n52
+ n62 -->|import| n55
+ n62 -->|import| n1
+ n62 -->|import| n40
+ n62 -->|file-url| n17
+ n68 -->|import| n40
+ n68 -->|import| n92
+ n68 -->|import| n54
+ n69 -->|import| n88
+ n69 -->|import| n8
+ n70 -->|import| n55
+ n70 -->|import| n40
+ n70 -->|import| n1
+ n72 -->|import| n54
+ n75 -->|file-url| n74
+ n79 -->|import| n8
+ n81 -->|import| n84
+ n81 -->|import| n88
+ n82 -->|import| n84
+ n82 -->|import| n83
+ n82 -->|import| n88
+ n82 -->|import| n89
+ n82 -->|import| n81
+ n87 -->|import| n88
+ n88 -->|import| n83
+ n96 -->|import| n92
+ n96 -->|import| n84
+ n99 -->|import| n84
+ n99 -->|import| n88

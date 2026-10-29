@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public final class MainActivity extends Activity {
     private static final String HOST="app.aiworkjob.local",ORIGIN="https://"+HOST;
     private static final String CSP="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'";
-    private static final Set<String> ASSETS=new HashSet<>(Arrays.asList("index.html","app.js","catalog.js","domain.js","icons.js","styles.css","icon.svg","snapshot.json","config.js","studio.html","studio.js","studio.css","deliverable.html","deliverable.js","deliverable.css","fonts/PretendardVariable.woff2"));
+    private static final Set<String> ASSETS=new HashSet<>(Arrays.asList("index.html","app.js","account-manager-ui.js","catalog.js","domain.js","icons.js","styles.css","icon.svg","snapshot.json","config.js","studio.html","studio.js","studio.css","deliverable.html","deliverable.js","deliverable.css","fonts/PretendardVariable.woff2"));
     private WebView web;
     private JobRepository repository;
     @Override public void onCreate(Bundle state){

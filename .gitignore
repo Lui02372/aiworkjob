@@ -11,3 +11,8 @@ artifacts/*.tar.gz
 /releases/
 artifacts/release-smoke/
 artifacts/maintenance-registration.json
+data/
+.env
+.env.*
+!.env.example
+artifacts/product/

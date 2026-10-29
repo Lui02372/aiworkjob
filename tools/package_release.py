@@ -22,8 +22,11 @@ APK는 Android 8.0 이상용 개발 서명 테스트 앱입니다.
 매칭 수락은 지원·채용 확정이 아니며 실제 결제·인출 기능은 연결되지 않았습니다.
 '''
 with zipfile.ZipFile(webzip,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
-    for name in ['package.json','server.mjs','api.mjs','start-aiworkjob.bat','README.md','aiworkjob-debug.apk']:
+    for name in ['package.json','server.mjs','api.mjs','commerce.mjs','product-kit.mjs','account-manager.mjs','start-aiworkjob.bat','README.md','aiworkjob-debug.apk']:
         z.write(ROOT/name,name)
+    for path in sorted((ROOT/'integrations').rglob('*')):
+        if path.is_file():z.write(path,path.relative_to(ROOT).as_posix())
+    z.write(ROOT/'docs/MONETIZATION.md','docs/MONETIZATION.md')
     for path in sorted((ROOT/'web').rglob('*')):
         if path.is_file():z.write(path,path.relative_to(ROOT).as_posix())
     z.writestr('WEBAPP-START.txt',instructions.encode('utf-8-sig'))

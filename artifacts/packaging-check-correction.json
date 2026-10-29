@@ -1,0 +1,11 @@
+{
+  "failure": "config.js was compared after universal-newline conversion against raw APK bytes",
+  "evidence": {
+    "version": "0.1.3",
+    "apkAndSourceBytesEqual": true,
+    "allWebAssetsMatch": true,
+    "windowsLineEndings": "CRLF"
+  },
+  "correction": "Compare every embedded web asset as raw bytes; isolate child runtime from host payment/vault environment",
+  "status": "passed"
+}

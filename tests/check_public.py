@@ -63,6 +63,12 @@ with sync_playwright() as p:
  first.reload(wait_until='networkidle')
  expect(first.locator('.studio-row p').first).to_have_text('Latest review from the first public tab.')
  checks.append('deployed studio rejects a conflicting edit while preserving pending input')
+ shop=recipient.new_page();shop.goto(base+'store.html',wait_until='networkidle')
+ expect(shop.locator('#checkout')).to_be_disabled()
+ expect(shop.locator('#purchase-status')).to_contain_text('구매를 접수하지 않습니다')
+ sample=recipient.new_page();sample.goto(base+'kit-sample.html',wait_until='networkidle')
+ expect(sample.locator('h1')).to_contain_text('확인한 사실')
+ checks.append('public product sample opens while unconnected checkout stays disabled')
  assert not errors,errors
  page.locator('#dialog [data-action="close"]').first.click()
  page.screenshot(path=str(ROOT/'artifacts/public-web.png'))

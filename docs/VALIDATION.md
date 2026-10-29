@@ -4,14 +4,17 @@
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 핵심 로직 | 35개 통과 | `tests/domain.test.mjs` |
+| 핵심 로직·판매·SDK/미션 | 63개 통과 | `tests/*.test.mjs` |
 | Chrome PC·모바일의 기존 전체 흐름 | 이전 점검의 27개 시나리오 통과 기록 | `artifacts/browser-report.json`; 이번에는 변경 범위의 아래 회귀 검사를 실행 |
-| Android API 36 에뮬레이터 | 10개 검사 통과, 설치 버전 0.1.2 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
-| 프로젝트 하위 경로의 공개 웹·스튜디오 동시 편집 | 0.1.2의 13개 검사 통과 | `artifacts/pages-report.json` |
+| Android API 36 에뮬레이터 | 11개 검사 통과, 설치 버전 0.1.3 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
+| 프로젝트 하위 경로의 공개 웹·스튜디오 동시 편집 | 13개 검사 통과 | `artifacts/pages-report.json` |
 | 공개 웹·별도 비로그인 브라우저 | v0.1.2 배포 후 8개 검사 통과; 이전 v0.1.1 실패 재현 보존 | `artifacts/maintenance-2026-10-29-1201/public-report.json` |
 | GitHub 공개 릴리스 | v0.1.2 파일 네 개를 비로그인 다운로드하여 해시·바이트 일치 확인 | `artifacts/maintenance-2026-10-29-1201/public-downloads.json` |
-| 0.1.1 → 0.1.2 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
-| 배포 ZIP 압축 해제 후 실행 | 0.1.2의 6개 검사 통과, 웹·APK 자산과 버전 일치 | `artifacts/release-0.1.2-report.json` |
+| 0.1.2 → 0.1.3 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
+| 배포 ZIP 압축 해제 후 실행 | 0.1.3의 7개 검사 통과, 웹·APK 전체 자산과 버전 일치 | `artifacts/release-0.1.3-report.json` |
+| 판매·모의 입금·실제 키트 다운로드 화면 | 11개 통과, 실제 결제사 연결·매출 아님 | `artifacts/commerce-report.json` |
+| 계정 관리자 미션 화면 | 8개 통과, 위임·잠금·초안·수동 기록 보존 | `artifacts/account-manager-report.json` |
+| 두 앱의 실제 로컬 HTTP·SDK | 4개 통과, 새 임시 금고·모의 모델, 실제 외부 호출·수익 없음 | `artifacts/cross-app-report.json` |
 | 네이티브 실제 공고 수집 | 97건, 개별 공고 open 상태 확인 | Android 검증 보고서. 확인 시점의 수치 |
 | Android 빌드·lint | 성공, lint 오류 0 | `android/app/build/reports/lint-results-debug.txt` |
 | 코드 지도 | 파일 검색·노드 선택·작은 화면 검사 통과 | 오프라인 `docs/codevisualization/index.html` |
@@ -33,3 +36,5 @@
 - GitHub Actions: 매일 한국 시간 09:15, 공식 공고 수집 → 로직 검사 → 공개 웹 검사 → 검사 통과한 산출물 게시. 외부 API 실패 시 새 웹 산출물을 게시하지 않는다.
 - 오늘의 AI 후속 개발: Orca가 실행 중일 때 1시간 단위로 점검·실제 결함 수정·관련 검증 후 필요한 경우 새 패치 릴리스. `tools/maintenance_due.py`가 한국 시간 2026-10-29에만 실행을 허용하므로 다음 날부터 AI 작업은 건너뛴다. 날짜 제한 RRULE을 현재 호스트가 받지 않아 사전 검사로 범위를 제한했다.
 - APK 설치 검증은 에뮬레이터에서 수행했으며 실제 사용자 단말에 대한 증거는 아니다. WebView 저장이 디스크에 반영된 기준 상태를 프로세스 재시작으로 먼저 확인한 뒤 업데이트 보존을 검사했다.
+
+0.1.3의 판매·미션 코드는 기본 미연결이며 실입금·정산은 확인하지 않았다. 공유 A 승격은 활성 lease owner를 요구하는 공통 도구로만 한다. GitHub 공개 게시 후의 버전·해시·workflow 결과는 별도 배포 artifact에 기록한다. 이전 공개 0.1.2 사전 점검과 이번 로컬 0.1.3 검증을 혼동하지 않는다.

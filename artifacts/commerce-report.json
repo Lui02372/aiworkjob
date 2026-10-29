@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "version": "0.1.3",
+  "checks": [
+    "store explains real product contents, sample, seller and test-only payment state",
+    "sample opens before purchase without collecting payment details",
+    "callback verifies stored server price and removes sensitive redirect parameters",
+    "provider-confirmed synthetic payment downloads the actual eleven-file product ZIP",
+    "buyer order receipt and authorization survive a page reload",
+    "virtual-account issuance remains waiting with no download or real-income claim",
+    "verified synthetic deposit webhook refreshes provider status; forged callback is rejected",
+    "a cancellation revokes the download even after the purchase page was opened",
+    "desktop and 390px mobile store run without overflow or JavaScript errors",
+    "static Pages store keeps checkout disabled and sends no payment API requests",
+    "browser storage contains neither vault tokens nor payment server secrets"
+  ],
+  "count": 11,
+  "environment": "isolated mocked providers; no real charge, model invocation, bank account or income",
+  "checkedAt": "2026-10-29T12:55:44"
+}

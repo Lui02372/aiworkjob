@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "count": 5,
+  "checks": [
+    "B token-only env uses 8781",
+    "A token-only env uses 8780",
+    "explicit env-file URL is preserved",
+    "blank URL falls back to channel default",
+    "process environment keeps Node precedence"
+  ],
+  "sdkSha256": "dfb13782f2f233d0e2eef5d9026a39475ff936e556aaeff5e578d2acf9300e53",
+  "userEnvironmentFilesChanged": false,
+  "userProcessesStopped": false
+}

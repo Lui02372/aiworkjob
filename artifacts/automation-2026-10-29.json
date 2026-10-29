@@ -1,0 +1,9 @@
+﻿{
+    "automationId":  "ea16c2f8-40ce-42cd-8c5a-f9661c40619d",
+    "rrule":  "FREQ=HOURLY;BYMINUTE=0;UNTIL=20261029T145900Z",
+    "precheck":  "python commonn/b/aiworkjob/tools/maintenance_due.py",
+    "timezone":  "Asia/Seoul",
+    "sharedInstructions":  true,
+    "leaseCheck":  true,
+    "enabled":  true
+}

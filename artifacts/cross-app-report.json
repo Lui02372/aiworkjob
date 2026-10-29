@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "checks": [
+    "two real local HTTP servers use the reviewed SDK",
+    "scoped fresh-vault mission creation and budget-reserved retry reuse one operation",
+    "synthetic model output crosses both servers as a draft",
+    "no external account job or income record is created"
+  ],
+  "count": 4,
+  "modelCalls": 2,
+  "realModelCalls": 0,
+  "realIncome": 0,
+  "checkedAt": "2026-10-29T03:54:01.877Z"
+}

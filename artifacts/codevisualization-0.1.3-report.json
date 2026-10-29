@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "offline viewer opens",
+    "file search and selection",
+    "390px layout and no script errors"
+  ],
+  "unresolved": 3,
+  "cycles": 0
+}

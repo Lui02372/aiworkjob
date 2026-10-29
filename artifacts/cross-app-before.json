@@ -1,0 +1,10 @@
+{
+  "status": "reproduced",
+  "failure": "A retry of an existing mission was blocked by aiworkjob after that mission reserved the remaining daily model budget.",
+  "expectedStatus": 201,
+  "actualStatus": 403,
+  "command": "node tests/check_cross_app.mjs",
+  "environment": "Two real local HTTP servers, fresh temporary vault, injected model; no real credentials, account actions or income",
+  "checkedDate": "2026-10-29",
+  "phase": "Before the reserved-budget retry correction"
+}

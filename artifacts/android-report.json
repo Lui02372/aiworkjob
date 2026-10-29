@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "serial": "emulator-5560",
   "checks": [
     "installed Android version matches the source release",
@@ -12,10 +12,11 @@
     "native saved job persists after reload",
     "Android back closes the job detail",
     "native bottom navigation opens profile",
-    "Android back returns to home"
+    "Android back returns to home",
+    "Android allowed workspace explains the local-server bridge without vault requests"
   ],
-  "count": 10,
+  "count": 11,
   "officialJobs": 97,
   "source": "Himalayas",
-  "checkedAt": "2026-10-29T11:15:56"
+  "checkedAt": "2026-10-29T12:44:06"
 }

@@ -46,6 +46,13 @@ try:
     adb('shell','input','keyevent','4')
     page.wait_for_url('**#home')
     check('Android back returns to home')
+    # A temporary allowed workspace must still keep vault requests out of Android.
+    bridge_requests=[];page.on('request',lambda req:bridge_requests.append(req.url) if '/api/account-manager/' in req.url else None)
+    workspace_id=page.evaluate("async raw=>{const d=await import('./domain.js');const s=d.loadState(localStorage.getItem('aiworkjob.live.v1'));const w=d.createWorkspace(raw);w.policy='allowed';w.policyNote='TEST ONLY public draft permission for native connection notice.';s.workspaces.push(w);localStorage.setItem('aiworkjob.live.v1',JSON.stringify(s));return w.id;}",actual)
+    page.goto('https://app.aiworkjob.local/index.html#workspace/'+workspace_id,wait_until='networkidle');page.reload(wait_until='networkidle')
+    expect(page.locator('.account-manager-panel')).to_contain_text('PC에서 aiworkjob 로컬 서버')
+    check('Android allowed workspace explains the local-server bridge without vault requests',not bridge_requests)
+    page.goto('https://app.aiworkjob.local/index.html#home',wait_until='networkidle')
     page.evaluate("original=>{if(original===null)localStorage.removeItem('aiworkjob.live.v1');else localStorage.setItem('aiworkjob.live.v1',original);location.reload();}",original_state)
     page.wait_for_selector('.job-card',timeout=35000)
     page.screenshot(path=str(ROOT/'artifacts/android.png'))

@@ -1,8 +1,9 @@
 {
-  "generatedAt": "2026-10-29T01:21:07.579Z",
+  "generatedAt": "2026-10-29T03:55:07.767Z",
   "scope": "First-party source inventory; excludes dependencies/builds/secrets/data directories. JS/TS literal relative import/require/file-URL edges only; heuristic, not complete semantic analysis. Java/Python inventoried but not resolved. No runtime connectivity claim.",
   "files": [
     "README.md",
+    "account-manager.mjs",
     "android/app/src/main/AndroidManifest.xml",
     "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
     "android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java",
@@ -10,33 +11,70 @@
     "android/app/src/main/res/values-v27/styles.xml",
     "android/app/src/main/res/values/styles.xml",
     "api.mjs",
+    "artifacts/account-manager-report.json",
     "artifacts/android-report.json",
     "artifacts/android-update-report.json",
+    "artifacts/automation-2026-10-29.json",
     "artifacts/browser-report.json",
+    "artifacts/codevisualization-0.1.3-report.json",
+    "artifacts/commerce-report.json",
+    "artifacts/cross-app-before.json",
+    "artifacts/cross-app-report.json",
     "artifacts/domain-report.json",
-    "artifacts/maintenance-registration.json",
+    "artifacts/maintenance-2026-10-29-1101/android-baseline-restore.json",
+    "artifacts/maintenance-2026-10-29-1101/baseline-public-check.json",
+    "artifacts/maintenance-2026-10-29-1101/baseline-release-check.json",
+    "artifacts/maintenance-2026-10-29-1101/baseline-release-manifest.json",
+    "artifacts/maintenance-2026-10-29-1101/reproduce_studio_conflict.py",
+    "artifacts/maintenance-2026-10-29-1101/studio-conflict-before.json",
+    "artifacts/maintenance-2026-10-29-1201/draft-verification.json",
+    "artifacts/maintenance-2026-10-29-1201/public-downloads.json",
+    "artifacts/maintenance-2026-10-29-1201/public-report.json",
+    "artifacts/maintenance-2026-10-29-1201/published-release.json",
+    "artifacts/maintenance-2026-10-29-1201/release-report.json",
+    "artifacts/packaging-check-correction.json",
     "artifacts/pages-report.json",
+    "artifacts/product/manifest.json",
     "artifacts/public-report.json",
     "artifacts/quality-report.json",
     "artifacts/release-0.1.0-report.json",
     "artifacts/release-0.1.1-report.json",
+    "artifacts/release-0.1.2-report.json",
+    "artifacts/release-0.1.3-manifest.json",
+    "artifacts/release-0.1.3-report.json",
+    "commerce.mjs",
     "docs/DESIGN.md",
     "docs/IMPROVEMENTS.md",
     "docs/ITERATION_PROMPT.md",
     "docs/MAINTENANCE_PROMPT.md",
+    "docs/MONETIZATION.md",
     "docs/RESEARCH.md",
     "docs/VALIDATION.md",
     "docs/architecture.json",
+    "docs/reviews/0.1.2.md",
+    "docs/reviews/0.1.3.md",
+    "integrations/README.md",
+    "integrations/account-manager-client.mjs",
     "package.json",
+    "product-kit.mjs",
     "server.mjs",
+    "tests/account-manager.test.mjs",
+    "tests/browser_support.py",
+    "tests/check_account_manager.py",
     "tests/check_android.py",
     "tests/check_browser.py",
+    "tests/check_commerce.py",
+    "tests/check_cross_app.mjs",
+    "tests/check_maintenance.py",
     "tests/check_pages.py",
     "tests/check_public.py",
     "tests/check_release.py",
     "tests/check_update.py",
+    "tests/commerce.test.mjs",
     "tests/domain.test.mjs",
+    "tests/fixture-server.mjs",
     "tools/build-pages.mjs",
+    "tools/build-product.mjs",
     "tools/build-site.mjs",
     "tools/codevisualization-viewer.html",
     "tools/codevisualization.mjs",
@@ -45,6 +83,7 @@
     "tools/quality.mjs",
     "tools/refresh-feed.mjs",
     "tools/validate-artifact.mjs",
+    "web/account-manager-ui.js",
     "web/app.js",
     "web/catalog.js",
     "web/config.js",
@@ -54,7 +93,12 @@
     "web/domain.js",
     "web/icons.js",
     "web/index.html",
+    "web/kit-sample.html",
+    "web/product.js",
     "web/snapshot.json",
+    "web/store.css",
+    "web/store.html",
+    "web/store.js",
     "web/studio.css",
     "web/studio.html",
     "web/studio.js",
@@ -62,10 +106,122 @@
   ],
   "edges": [
     {
+      "from": "account-manager.mjs",
+      "to": "integrations/account-manager-client.mjs",
+      "kind": "import",
+      "line": 2,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "account-manager.mjs",
+      "to": "web/domain.js",
+      "kind": "import",
+      "line": 3,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "commerce.mjs",
+      "to": "web/product.js",
+      "kind": "import",
+      "line": 6,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "commerce.mjs",
+      "to": "product-kit.mjs",
+      "kind": "import",
+      "line": 7,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "product-kit.mjs",
+      "to": "web/product.js",
+      "kind": "import",
+      "line": 2,
+      "confidence": "static-heuristic"
+    },
+    {
       "from": "server.mjs",
       "to": "api.mjs",
       "kind": "import",
+      "line": 5,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "server.mjs",
+      "to": "commerce.mjs",
+      "kind": "import",
+      "line": 6,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "server.mjs",
+      "to": "account-manager.mjs",
+      "kind": "import",
+      "line": 7,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/account-manager.test.mjs",
+      "to": "account-manager.mjs",
+      "kind": "import",
       "line": 4,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/account-manager.test.mjs",
+      "to": "integrations/account-manager-client.mjs",
+      "kind": "import",
+      "line": 5,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/check_cross_app.mjs",
+      "to": "server.mjs",
+      "kind": "import",
+      "line": 7,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/check_cross_app.mjs",
+      "to": "account-manager.mjs",
+      "kind": "import",
+      "line": 8,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/check_cross_app.mjs",
+      "to": "commerce.mjs",
+      "kind": "import",
+      "line": 9,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/check_cross_app.mjs",
+      "to": "artifacts/cross-app-report.json",
+      "kind": "file-url",
+      "line": 35,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/commerce.test.mjs",
+      "to": "commerce.mjs",
+      "kind": "import",
+      "line": 6,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/commerce.test.mjs",
+      "to": "web/product.js",
+      "kind": "import",
+      "line": 7,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/commerce.test.mjs",
+      "to": "product-kit.mjs",
+      "kind": "import",
+      "line": 8,
       "confidence": "static-heuristic"
     },
     {
@@ -83,6 +239,34 @@
       "confidence": "static-heuristic"
     },
     {
+      "from": "tests/fixture-server.mjs",
+      "to": "server.mjs",
+      "kind": "import",
+      "line": 7,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/fixture-server.mjs",
+      "to": "commerce.mjs",
+      "kind": "import",
+      "line": 8,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/fixture-server.mjs",
+      "to": "account-manager.mjs",
+      "kind": "import",
+      "line": 9,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tools/build-product.mjs",
+      "to": "product-kit.mjs",
+      "kind": "import",
+      "line": 3,
+      "confidence": "static-heuristic"
+    },
+    {
       "from": "tools/codevisualization.mjs",
       "to": "tools/codevisualization-viewer.html",
       "kind": "file-url",
@@ -92,6 +276,20 @@
     {
       "from": "tools/refresh-feed.mjs",
       "to": "api.mjs",
+      "kind": "import",
+      "line": 2,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/account-manager-ui.js",
+      "to": "web/config.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/account-manager-ui.js",
+      "to": "web/domain.js",
       "kind": "import",
       "line": 2,
       "confidence": "static-heuristic"
@@ -125,6 +323,13 @@
       "confidence": "static-heuristic"
     },
     {
+      "from": "web/app.js",
+      "to": "web/account-manager-ui.js",
+      "kind": "import",
+      "line": 5,
+      "confidence": "static-heuristic"
+    },
+    {
       "from": "web/deliverable.js",
       "to": "web/domain.js",
       "kind": "import",
@@ -136,6 +341,20 @@
       "to": "web/catalog.js",
       "kind": "import",
       "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/store.js",
+      "to": "web/product.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/store.js",
+      "to": "web/config.js",
+      "kind": "import",
+      "line": 2,
       "confidence": "static-heuristic"
     },
     {
@@ -157,14 +376,20 @@
     {
       "from": "server.mjs",
       "spec": "./web/",
-      "line": 5,
+      "line": 8,
       "kind": "file-url"
     },
     {
       "from": "server.mjs",
       "spec": "./aiworkjob-debug.apk",
-      "line": 12,
+      "line": 22,
       "kind": "file-url"
+    },
+    {
+      "from": "tests/check_cross_app.mjs",
+      "spec": "../../../b/ai-acoountmanager/server.mjs",
+      "line": 10,
+      "kind": "dynamic-import"
     }
   ],
   "signals": [
@@ -219,34 +444,139 @@
       "line": 25
     },
     {
-      "file": "tests/check_android.py",
-      "kind": "network",
+      "file": "commerce.mjs",
+      "kind": "loop",
+      "line": 22
+    },
+    {
+      "file": "product-kit.mjs",
+      "kind": "loop",
+      "line": 227
+    },
+    {
+      "file": "product-kit.mjs",
+      "kind": "loop",
+      "line": 227
+    },
+    {
+      "file": "product-kit.mjs",
+      "kind": "loop",
+      "line": 230
+    },
+    {
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
+      "line": 26
+    },
+    {
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
+      "line": 28
+    },
+    {
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
       "line": 29
     },
     {
-      "file": "tests/check_android.py",
-      "kind": "network",
-      "line": 32
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
+      "line": 30
     },
     {
-      "file": "tests/check_android.py",
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
+      "line": 33
+    },
+    {
+      "file": "tests/account-manager.test.mjs",
+      "kind": "loop",
+      "line": 37
+    },
+    {
+      "file": "tests/check_account_manager.py",
+      "kind": "storage",
+      "line": 12
+    },
+    {
+      "file": "tests/check_account_manager.py",
+      "kind": "storage",
+      "line": 16
+    },
+    {
+      "file": "tests/check_account_manager.py",
+      "kind": "storage",
+      "line": 16
+    },
+    {
+      "file": "tests/check_account_manager.py",
       "kind": "storage",
       "line": 22
     },
     {
-      "file": "tests/check_android.py",
+      "file": "tests/check_account_manager.py",
       "kind": "storage",
-      "line": 36
+      "line": 32
+    },
+    {
+      "file": "tests/check_account_manager.py",
+      "kind": "storage",
+      "line": 34
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "network",
+      "line": 30
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "network",
+      "line": 33
     },
     {
       "file": "tests/check_android.py",
       "kind": "storage",
-      "line": 48
+      "line": 23
     },
     {
       "file": "tests/check_android.py",
       "kind": "storage",
-      "line": 48
+      "line": 37
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 51
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 51
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 56
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 56
+    },
+    {
+      "file": "tests/check_commerce.py",
+      "kind": "storage",
+      "line": 58
+    },
+    {
+      "file": "tests/check_cross_app.mjs",
+      "kind": "network",
+      "line": 24
+    },
+    {
+      "file": "tests/check_pages.py",
+      "kind": "event",
+      "line": 101
     },
     {
       "file": "tests/check_pages.py",
@@ -254,44 +584,74 @@
       "line": 19
     },
     {
+      "file": "tests/check_pages.py",
+      "kind": "storage",
+      "line": 132
+    },
+    {
       "file": "tests/check_public.py",
       "kind": "storage",
-      "line": 19
+      "line": 23
     },
     {
       "file": "tests/check_update.py",
       "kind": "storage",
-      "line": 24
+      "line": 34
     },
     {
       "file": "tests/check_update.py",
       "kind": "storage",
-      "line": 25
+      "line": 35
     },
     {
       "file": "tests/check_update.py",
       "kind": "storage",
-      "line": 26
+      "line": 35
     },
     {
       "file": "tests/check_update.py",
       "kind": "storage",
-      "line": 33
-    },
-    {
-      "file": "tests/check_update.py",
-      "kind": "storage",
-      "line": 39
-    },
-    {
-      "file": "tests/check_update.py",
-      "kind": "storage",
-      "line": 40
+      "line": 36
     },
     {
       "file": "tests/check_update.py",
       "kind": "storage",
       "line": 46
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 52
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 68
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 69
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "loop",
+      "line": 68
+    },
+    {
+      "file": "tests/commerce.test.mjs",
+      "kind": "loop",
+      "line": 55
+    },
+    {
+      "file": "tests/commerce.test.mjs",
+      "kind": "loop",
+      "line": 63
+    },
+    {
+      "file": "tests/commerce.test.mjs",
+      "kind": "loop",
+      "line": 70
     },
     {
       "file": "tests/domain.test.mjs",
@@ -389,29 +749,39 @@
       "line": 22
     },
     {
-      "file": "web/app.js",
+      "file": "web/account-manager-ui.js",
       "kind": "timer",
-      "line": 10
+      "line": 41
     },
     {
-      "file": "web/app.js",
-      "kind": "event",
-      "line": 16
-    },
-    {
-      "file": "web/app.js",
-      "kind": "event",
-      "line": 17
-    },
-    {
-      "file": "web/app.js",
+      "file": "web/account-manager-ui.js",
       "kind": "event",
       "line": 40
     },
     {
+      "file": "web/account-manager-ui.js",
+      "kind": "network",
+      "line": 15
+    },
+    {
+      "file": "web/account-manager-ui.js",
+      "kind": "loop",
+      "line": 19
+    },
+    {
+      "file": "web/app.js",
+      "kind": "timer",
+      "line": 12
+    },
+    {
       "file": "web/app.js",
       "kind": "event",
-      "line": 41
+      "line": 18
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 19
     },
     {
       "file": "web/app.js",
@@ -435,38 +805,48 @@
     },
     {
       "file": "web/app.js",
-      "kind": "network",
-      "line": 34
+      "kind": "event",
+      "line": 46
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 47
     },
     {
       "file": "web/app.js",
       "kind": "network",
-      "line": 34
+      "line": 36
     },
     {
       "file": "web/app.js",
       "kind": "network",
-      "line": 38
+      "line": 36
+    },
+    {
+      "file": "web/app.js",
+      "kind": "network",
+      "line": 40
     },
     {
       "file": "web/app.js",
       "kind": "storage",
-      "line": 5
+      "line": 7
     },
     {
       "file": "web/app.js",
       "kind": "storage",
-      "line": 9
+      "line": 11
     },
     {
       "file": "web/app.js",
       "kind": "loop",
-      "line": 27
+      "line": 29
     },
     {
       "file": "web/app.js",
       "kind": "loop",
-      "line": 28
+      "line": 30
     },
     {
       "file": "web/deliverable.js",
@@ -519,29 +899,79 @@
       "line": 53
     },
     {
+      "file": "web/store.js",
+      "kind": "timer",
+      "line": 19
+    },
+    {
+      "file": "web/store.js",
+      "kind": "network",
+      "line": 11
+    },
+    {
+      "file": "web/store.js",
+      "kind": "storage",
+      "line": 8
+    },
+    {
+      "file": "web/store.js",
+      "kind": "storage",
+      "line": 9
+    },
+    {
+      "file": "web/store.js",
+      "kind": "loop",
+      "line": 7
+    },
+    {
+      "file": "web/store.js",
+      "kind": "loop",
+      "line": 10
+    },
+    {
       "file": "web/studio.js",
       "kind": "event",
+      "line": 31
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "event",
+      "line": 36
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "event",
+      "line": 37
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "event",
+      "line": 38
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "storage",
+      "line": 13
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "storage",
       "line": 20
     },
     {
       "file": "web/studio.js",
-      "kind": "event",
+      "kind": "storage",
+      "line": 21
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "storage",
       "line": 25
     },
     {
       "file": "web/studio.js",
-      "kind": "storage",
-      "line": 12
-    },
-    {
-      "file": "web/studio.js",
-      "kind": "storage",
-      "line": 14
-    },
-    {
-      "file": "web/studio.js",
       "kind": "loop",
-      "line": 23
+      "line": 34
     }
   ],
   "cycles": [],
@@ -641,11 +1071,67 @@
         ]
       },
       {
-        "id": "future",
-        "label": "국내 API·클라우드 동기화·서버 LLM·결제",
-        "status": "planned",
-        "description": "설계 범위. 현재 미연결",
+        "id": "shop",
+        "label": "Digital work kit and product sample",
+        "status": "implemented",
+        "description": "Browser and Node injected-provider checks pass; checkout disabled without merchant configuration.",
         "evidence": [
+          "web/store.html",
+          "web/store.js",
+          "web/product.js",
+          "product-kit.mjs",
+          "tests/check_commerce.py"
+        ]
+      },
+      {
+        "id": "orders",
+        "label": "Private SQLite orders and versioned product ZIP",
+        "status": "implemented",
+        "description": "Order tokens are hashed; data stays in channel runtime and is excluded from release.",
+        "evidence": [
+          "commerce.mjs",
+          "tests/commerce.test.mjs"
+        ]
+      },
+      {
+        "id": "pg",
+        "label": "Toss payment approval and deposit callback",
+        "status": "conditional",
+        "description": "Requires own merchant agreement and server keys. No real provider test or income yet.",
+        "evidence": [
+          "commerce.mjs",
+          "docs/MONETIZATION.md"
+        ]
+      },
+      {
+        "id": "bridge",
+        "label": "Local account-manager mission adapter",
+        "status": "implemented",
+        "description": "Scope, permission, idempotency, same-origin and result ownership tested with injected SDK transport.",
+        "evidence": [
+          "account-manager.mjs",
+          "web/account-manager-ui.js",
+          "integrations/account-manager-client.mjs",
+          "tests/check_account_manager.py"
+        ]
+      },
+      {
+        "id": "manager",
+        "label": "Account manager v1 API",
+        "status": "conditional",
+        "description": "Requires AUA_URL, server-only token, model setup, active delegation and mission budget.",
+        "evidence": [
+          "account-manager.mjs",
+          "integrations/README.md"
+        ]
+      },
+      {
+        "id": "future",
+        "label": "Cloud sync, verified bank settlement and complete-app automation",
+        "status": "planned",
+        "description": "Not connected. Product drafts and synthetic test payments are not actual sales.",
+        "evidence": [
+          "docs/MONETIZATION.md",
           "docs/RESEARCH.md"
         ]
       }
@@ -725,8 +1211,50 @@
       },
       {
         "from": "ui",
+        "to": "shop",
+        "label": "Product sample link",
+        "status": "implemented"
+      },
+      {
+        "from": "web-api",
+        "to": "orders",
+        "label": "Node-only /api/store/* routes",
+        "status": "implemented"
+      },
+      {
+        "from": "shop",
+        "to": "orders",
+        "label": "Authorized buyer receipts and download",
+        "status": "implemented"
+      },
+      {
+        "from": "orders",
+        "to": "pg",
+        "label": "Server verification before delivery",
+        "status": "conditional"
+      },
+      {
+        "from": "ui",
+        "to": "bridge",
+        "label": "Allowed-workspace mission panel",
+        "status": "implemented"
+      },
+      {
+        "from": "bridge",
+        "to": "manager",
+        "label": "Server-held scoped agent token",
+        "status": "conditional"
+      },
+      {
+        "from": "public-web",
+        "to": "bridge",
+        "label": "Local-server requirement notice only",
+        "status": "implemented"
+      },
+      {
+        "from": "ui",
         "to": "future",
-        "label": "후속 통합",
+        "label": "Unconnected future work",
         "status": "planned"
       }
     ]

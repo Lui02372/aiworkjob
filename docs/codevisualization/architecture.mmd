@@ -9,7 +9,12 @@ flowchart LR
  a7["Sites Worker 게시 패키지 · implemented"]
  a8["GitHub 공개 웹·원문 직접 확인 · implemented"]
  a9["매일 공고 갱신·검증 후 게시 · implemented"]
- a10["국내 API·클라우드 동기화·서버 LLM·결제 · planned"]
+ a10["Digital work kit and product sample · implemented"]
+ a11["Private SQLite orders and versioned product ZIP · implemented"]
+ a12["Toss payment approval and deposit callback · conditional"]
+ a13["Local account-manager mission adapter · implemented"]
+ a14["Account manager v1 API · conditional"]
+ a15["Cloud sync, verified bank settlement and complete-app automation · planned"]
  a0 --> a1
  a1 --> a2
  a3 --> a2
@@ -22,4 +27,11 @@ flowchart LR
  a0 --> a8
  a9 --> a8
  a9 --> a2
- a0 -.-> a10
+ a0 --> a10
+ a1 --> a11
+ a10 --> a11
+ a11 --> a12
+ a0 --> a13
+ a13 --> a14
+ a8 --> a13
+ a0 -.-> a15

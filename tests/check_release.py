@@ -16,6 +16,7 @@ with zipfile.ZipFile(release/f'aiworkjob-{version}-webapp.zip') as z:
     for member in z.infolist():
         assert (out/member.filename).resolve().is_relative_to(out.resolve()),'unsafe ZIP path'
         assert not member.filename.startswith(('.git/','.openai/','android/')),'unexpected private/build metadata'
+        assert not member.filename.startswith(('data/','runtime/')) and not Path(member.filename).name.startswith('.env') and not member.filename.endswith(('.sqlite','.db','.key','.keystore','.jks')),'private runtime data in release'
     z.extractall(out)
 checks.append('runtime ZIP excludes hosting identity and development caches')
 assert manifest['version']==version
@@ -24,14 +25,15 @@ config=(out/'web/config.js').read_text(encoding='utf-8')
 assert re.search(r"APP_VERSION='([^']+)'",config).group(1)==version
 assert (out/'aiworkjob-debug.apk').read_bytes()==(release/f'aiworkjob-{version}-android.apk').read_bytes()
 with zipfile.ZipFile(out/'aiworkjob-debug.apk') as apk:
-    assert apk.read('assets/config.js').decode()==config
-    assert apk.read('assets/studio.js')==(out/'web/studio.js').read_bytes()
+    for asset in (out/'web').rglob('*'):
+        if asset.is_file():assert apk.read('assets/'+asset.relative_to(out/'web').as_posix())==asset.read_bytes(),'Android/web asset mismatch: '+asset.name
 checks.append('manifest, web configuration and embedded Android assets match the release version')
 with socket.socket() as reservation:
     reservation.bind(('127.0.0.1',0))
     port=reservation.getsockname()[1]
 base=f'http://127.0.0.1:{port}'
-env={**os.environ,'AIWORKJOB_PORT':str(port)}
+env={k:v for k,v in os.environ.items() if not k.startswith(('AUA_','TOSS_','AIWORKJOB_'))}
+env['AIWORKJOB_PORT']=str(port)
 process=subprocess.Popen(['node','server.mjs'],cwd=out,env=env,stdout=subprocess.PIPE,stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0)
 try:
     for _ in range(40):
@@ -41,6 +43,11 @@ try:
     else:raise AssertionError('extracted server did not start')
     assert health['version']==version,'server version disagrees with release'
     checks.append('extracted runtime starts and reports release version')
+    with urllib.request.urlopen(base+'/api/store/catalog') as r:
+        assert json.load(r)['checkoutAvailable'] is False,'unconfigured runtime accepted a payment'
+    with urllib.request.urlopen(base+'/api/account-manager/status') as r:
+        assert json.load(r)['connected'] is False,'runtime unexpectedly has a vault connection'
+    checks.append('extracted runtime defaults to disconnected payments and vault without shipping private data')
     with urllib.request.urlopen(base+'/aiworkjob-debug.apk') as r:
         assert r.read(2)==b'PK' and 'android.package-archive' in r.headers['Content-Type']
     checks.append('runtime serves the installable Android APK')

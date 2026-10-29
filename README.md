@@ -39,6 +39,10 @@ AI 활용자가 실제 공고를 찾고, 자신의 조건을 비교한 뒤 지�
 
 ## 검증과 구조
 
+상품 샘플은 [실무 키트](https://lui02372.github.io/aiworkjob/store.html)에서 확인할 수 있습니다. 서버용 판매·주문·가상계좌 입금 확인 코드와 계정 관리자 미션 어댑터를 포함하지만, 기본 상태는 **실결제·금고 미연결**입니다. 실제 가맹점·결제사 키·본인 명의 정산 계좌와 활성 위임이 없으면 구매나 미션을 시작하지 않습니다. 서버의 `AUA_URL/AUA_TOKEN`은 브라우저·Android에 저장하지 않습니다. [연결 범위와 운영 안내](docs/MONETIZATION.md)를 확인하세요.
+
+공동 작업실에서는 `C:/Android ProjectList/commonn/b/aiworkjob`에서 개발하고 검사 후 공통 승격 도구로 A를 갱신합니다. 원본 체크아웃과 실행 중인 A는 개발 중 교체하지 않습니다. A/B 주문 DB와 비밀값은 `commonn/runtime/aiworkjob/<a 또는 b>/`에 분리합니다.
+
 ```powershell
 node --test tests/domain.test.mjs
 python tests/check_browser.py
@@ -56,6 +60,6 @@ python tests/check_android.py emulator-5560
 - [검증 결과](docs/VALIDATION.md)
 - [오프라인 코드·구조 지도](docs/codevisualization/index.html)
 
-코드 지도 재생성: `npm run map`. 정적 분석의 미해결 2건은 `server.mjs`가 여는 웹 자산 디렉터리와 APK 바이너리이며 JS 의존성 추출 대상과 다릅니다. Java·Python의 호출 관계는 자동 추출하지 않습니다.
+코드 지도 재생성: `npm run map`. 정적 분석의 미해결 3건은 웹 자산 디렉터리, APK 바이너리, 공동 작업실의 두 앱 검사에서 참조하는 상대 프로젝트 소스입니다. 서버 미션은 패키지 안의 SDK를 사용합니다. Java·Python의 호출 관계는 자동 추출하지 않습니다.
 
 게시 패키지는 `npm run build`로 생성합니다. `tools/build-site.mjs`는 웹 자산·공개 피드 스냅샷·APK·동일한 API 코드를 단일 Worker로 묶습니다. APK를 먼저 빌드하고 루트에 복사해야 합니다. `android/local.properties`는 PC별 설정으로 Git에서 제외합니다.

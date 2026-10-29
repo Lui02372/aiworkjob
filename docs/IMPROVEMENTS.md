@@ -67,7 +67,7 @@
 - `python tests/check_update.py emulator-5560 0.1.1 0.1.2`: 6개 통과. 프로세스 재시작 기준 상태, 같은 서명 업데이트, 모든 기존 localStorage 값·프로필·스튜디오 보존, 기존 행 편집·재로딩, 임시 키만 제거한 뒤 원래 데이터 일치 확인. Android에서도 Web Locks를 확인했다.
 - `python tools/package_release.py`와 `python tests/check_release.py 0.1.2`: 패키징 및 압축 해제 실행 6개 통과. 매니페스트·웹 버전·APK 내부 자산·ZIP 안 APK 일치와 실제 공고 표시를 확인했다.
 
-검증 도구의 CSP 비호환 문자열 대기를 locator assertion으로 바꾸고, Android 검사의 시작 화면을 명시했다. `emulator-5562`의 일시 연결 중단으로 최종 캡처가 실패한 실행은 통과 보고서로 사용하지 않았다. 안정된 `emulator-5560`에서 이전 개발용 APK를 `install -r -d`로 테스트 기준 상태에 돌린 뒤 모든 기존 저장값이 같은지 확인하고 업데이트 검사를 완료했다. 앱 삭제나 데이터 초기화는 수행하지 않았다. 최종 업데이트 보고서에는 경고가 없다.
+검증 도구의 CSP 비호환 문자열 대기를 locator assertion으로 바꾸고, Android 검사의 시작 화면을 명시했다. `emulator-5563`의 일시 연결 중단으로 최종 캡처가 실패한 실행은 통과 보고서로 사용하지 않았다. 안정된 `emulator-5560`에서 이전 개발용 APK를 `install -r -d`로 테스트 기준 상태에 돌린 뒤 모든 기존 저장값이 같은지 확인하고 업데이트 검사를 완료했다. 앱 삭제나 데이터 초기화는 수행하지 않았다. 최종 업데이트 보고서에는 경고가 없다.
 
 이번 기능 개선은 위 결함 1건이다. 실제 지원·메시지·계약·납품 제출·금전 이동은 수행하지 않았다. 저장은 같은 기기·브라우저 범위이며 클라우드 동기화, 서버 LLM, 공고별 완성 앱 자동 개발, 결제 정산은 계속 미연결이다. 자동 개발 날짜 제한과 기존 공고 갱신 workflow는 변경하지 않았다.
 
@@ -80,3 +80,24 @@
 이번 실행의 검사: `npm test` 35개, `npm run build:pages`, `python tests/check_pages.py` 13개, `python tests/check_release.py 0.1.2` 6개, 실제 공개 URL의 `python tests/check_public.py` 8개 통과. 원문 링크·수동 모집 확인·재로딩 보존·비로그인 제작 화면·두 창 저장 및 충돌 차단을 확인했다. Pages workflow [40805672363](https://github.com/Lui02372/aiworkjob/actions/runs/40805672363)의 build/deploy도 성공했다.
 
 12:04 KST에 기존 초안을 수정 커밋 `34a9a25`로 고정하여 [v0.1.2](https://github.com/Lui02372/aiworkjob/releases/tag/v0.1.2)를 공개했다. 기존 파일을 다시 올리거나 교체하지 않았다. 공개된 APK·ZIP·매니페스트·해시의 네 URL을 인증 없이 다시 다운로드하여 초안 파일과 같은지 확인했다. 근거는 `artifacts/maintenance-2026-10-29-1201/{draft-verification,public-downloads,public-report,release-report}.json`이다. 검사를 다시 실행한 사실이나 공개 절차 완료를 새 기능 개선으로 세지 않는다.
+
+## 2026-10-29 공동 개발: 0.1.3
+
+사용자가 실제 수익화 개발과 계정 관리자 연동을 추가로 지시했다. `commonn/AGENTS.md`와 공유 사용자 방향을 읽고 B를 `commonn/b/aiworkjob` Git worktree로 분리했다. 원본 main은 `0f8ef93` 상태로 보존했다. 이 세션의 미완성 파일만 해시를 비교해 B로 옮겼다. 계정 관리자·SDK·승격 도구는 상대 담당의 소유로 두고 handoffs와 비밀값 없는 history로 협의했다. 활성 편집 lease owner는 `aiworkjob-b`다.
+
+실무 문서 11개를 실제 ZIP으로 만드는 키트와 무료 샘플·판매·주문 화면을 추가했다. 서버는 금액을 고정하고, 해시로 보관한 구매 토큰과 주문별 결제 키로 권한을 확인한다. 가상계좌 발급은 입금 대기이며, 결제사 조회의 DONE과 전체 금액을 확인해야 다운로드한다. 위조·중복 웹훅, 중복 승인, 금액 변조, 결제사 실패, 취소 뒤 재다운로드, 재시작 뒤 보존을 검사했다. 실제 가맹점과 키가 없으면 판매 접수는 비활성이다. 테스트 주문은 실제 매출·은행 정산으로 합산하지 않는다.
+
+계정 관리자 v1 SDK의 최종 해시 `dfb13782f2f233d0e2eef5d9026a39475ff936e556aaeff5e578d2acf9300e53`를 검토해 서버 전용 integrations에 포함했다. AI 허용과 확인 근거·활성 위임·모델 호출 권한을 확인한 작업에서만 미션을 요청한다. 목록과 결과물은 에이전트 및 작업 범위를 비교하며, 결과를 실행하지 않고 초안 텍스트로 열고 저장한다. 지원·납품·수동 입금 상태는 그대로 유지한다. Pages·Android는 로컬 서버가 필요하다고 안내하며 금고 토큰을 저장하거나 요청하지 않는다.
+
+두 앱의 실제 로컬 HTTP 서버와 새 임시 금고를 연결한 검사에서 **호출 예산을 예약한 미션의 동일 요청 재시도가 403으로 막히는 결함**을 재현했다. aiworkjob이 남은 일일 예산을 새 요청과 기존 요청에 똑같이 적용한 것이 원인이다. 미션별 권한과 한도는 먼저 확인하되, 같은 요청 키의 조회·일일 예산 예약 판정은 계정 관리자의 멱등 처리에 도달하도록 수정했다. 같은 요청은 기존 미션으로 돌아오며 다른 목표는 429로 거절된다. `artifacts/cross-app-before.json`, `tests/account-manager.test.mjs`, 두 서버의 `artifacts/cross-app-report.json`이 실패와 수정 근거다. 모델은 주입한 mock이며 실제 모델 호출·외부 계정 작업·수입 기록은 0건이다.
+
+검증:
+
+- `npm test`: 63개(기존 35·판매 14·SDK/미션 14) 통과. Pages 13개·판매 Chrome 11개·미션 Chrome 8개를 검사한다. 판매·미션 검사는 실제 Node HTTP 경로를 사용하고 공급자만 주입한다. 샘플·모바일·텍스트 안전·금고 잠금·브라우저 토큰 미노출을 확인했다. 공개 판매용 프로세스의 금고 브리지는 loopback proxy에도 비활성이다.
+- 실제 두 로컬 앱의 HTTP 및 SDK 계약 4개 통과. 새 미션·예산 예약 뒤 재시도·원본 결과물 가져오기·실수입 미기록을 확인했다. 실제 LLM 사용이나 외부 판매를 증명하지 않는다.
+- 기존 JDK 21·SDK 36·Gradle wrapper의 빌드·lint 성공. 0 errors / 기존 5 warnings. APK 0.1.3·versionCode 4, 기존 개발 서명 SHA-256 `33afd6fcd99dd6719c026191675fd3beb80c9f458c3281bc9f68db1a12cd889d` 유지.
+- `emulator-5560`에서 0.1.2 → 0.1.3 업데이트 6개, Android 실행 11개 통과. 모든 기존 저장값·프로필·스튜디오와 기존 행 편집·재로딩을 확인했다. AI 허용 테스트 작업에서도 금고 요청 없이 안내만 표시했다. 임시 데이터만 제거했고 물리 기기 설치·앱 삭제·초기화는 하지 않았다.
+- `tools/package_release.py` 패키징, `tests/check_release.py 0.1.3` 압축 해제 실행 7개 통과. APK 안 모든 웹 자산을 ZIP의 원본 바이트와 비교했다. 최초 검사는 Windows CRLF를 텍스트로 정규화한 검사 코드 때문에 실패했으며, 원본 바이트가 같음을 확인한 후 전체 자산의 바이트 비교로 수정했다. `artifacts/packaging-check-correction.json`.
+- 예약을 B·공유 지시·lease 기준으로 갱신했다. 날짜/활성/만료/손상 lease 검사 통과. RRULE의 UNTIL은 `20261029T145900Z`, 오늘 23:59 KST이며 연장하지 않는다. 실제 게시·승격 근거는 배포 후 artifacts와 공유 history에 별도로 기록한다.
+
+현재 실입금은 0건이다. AI 명의 계좌 개설, 본인 명의 판매자 계약, 라이브 결제 키, 은행 정산·실제 고객 구매는 완료하지 않았다. 코드·모의 검증·상품 초안을 실제 수익으로 표시하지 않는다. 운영 설정과 제한은 `MONETIZATION.md`에 있다.
