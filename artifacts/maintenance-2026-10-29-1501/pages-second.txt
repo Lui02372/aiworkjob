@@ -1,0 +1,26 @@
+Traceback (most recent call last):
+  File "C:\Android ProjectList\commonn\b\aiworkjob\tests\check_pages.py", line 150, in <module>
+    checks.extend(check_main_storage(browser,base))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Android ProjectList\commonn\b\aiworkjob\tests\main_storage_checks.py", line 91, in check_main_storage
+    other.wait_for_function('JSON.parse(localStorage.getItem("aiworkjob.live.v1")).saved.length===2')
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\sync_api\_generated.py", line 12761, in wait_for_function
+    self._sync(
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\_impl\_page.py", line 1151, in wait_for_function
+    return await self._main_frame.wait_for_function(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\_impl\_frame.py", line 940, in wait_for_function
+    await self._channel.send("waitForFunction", self._timeout, params)
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\_impl\_connection.py", line 76, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Playdata\AppData\Local\Programs\Python\Python312\Lib\site-packages\playwright\_impl\_connection.py", line 632, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.Error: Page.wait_for_function: EvalError: Evaluating a string as JavaScript violates the following Content Security Policy directive because 'unsafe-eval' is not an allowed source of script: script-src 'self'".
+
+    at eval (<anonymous>)
+    at predicate (eval at evaluate (:311:30), <anonymous>:4:60)
+    at next (eval at evaluate (:311:30), <anonymous>:29:33)

@@ -10,7 +10,7 @@ async function sourceFetch(url){const response=await fetch(url,{headers:{'User-A
 export async function handleApi(request){
   const url=new URL(request.url);
   if(request.method!=='GET')return json({error:'method_not_allowed'},405);
-  if(url.pathname==='/api/health')return json({service:'aiworkjob',version:'0.1.3',source:'Himalayas',auth:'device-local records',model:'rule-based matching; no hosted LLM'});
+  if(url.pathname==='/api/health')return json({service:'aiworkjob',version:'0.1.4',source:'Himalayas',auth:'device-local records',model:'rule-based matching; no hosted LLM'});
   if(url.pathname==='/api/check'){
     const target=checkPath(url.searchParams.get('url'));if(!target)return json({error:'invalid_source_url'},400);
     try{const r=await fetch(target,{signal:AbortSignal.timeout(15000)});if(r.status===410)return json({status:'closed'},410);if(r.status===404)return json({status:'unconfirmed'},404);if(!r.ok)return json({status:'unavailable'},503);const data=await r.json();return json({status:'open',job:data.job});}catch{return json({status:'unavailable'},503);}

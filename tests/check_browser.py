@@ -1,5 +1,5 @@
 """Real source smoke test + isolated fixture UI workflows; never submits an external application."""
-import json,time
+import json,time,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 
@@ -7,6 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'artifacts'
 OUT.mkdir(exist_ok=True)
 checks=[]
+base=os.environ.get('AIWORKJOB_TEST_URL','http://127.0.0.1:8787').rstrip('/')
 def check(name,condition=True):
     assert condition,name
     checks.append(name)
@@ -19,7 +20,9 @@ with sync_playwright() as p:
     live=browser.new_context(viewport={"width":1440,"height":1050})
     page=live.new_page();errors=[]
     page.on('pageerror',lambda err:errors.append(str(err)))
-    page.goto('http://127.0.0.1:8787',wait_until='networkidle')
+    page.goto(base,wait_until='networkidle')
+    expected_version=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
+    assert page.evaluate("async()=>{const c=await import('./config.js');return c.APP_VERSION}")==expected_version,'browser server is not the current B version'
     page.wait_for_selector('.job-card',timeout=35000)
     check('real source jobs appear',page.locator('.job-card').count()>0)
     check('list is paginated',page.locator('.job-card').count()<=12)
@@ -35,7 +38,7 @@ with sync_playwright() as p:
     context.route('**/api/check?**',lambda route:route.fulfill(json={"status":"open","job":raw}))
     page=context.new_page();errors=[]
     page.on('pageerror',lambda err:errors.append(str(err)))
-    page.goto('http://127.0.0.1:8787',wait_until='networkidle')
+    page.goto(base,wait_until='networkidle')
     expect(page.locator('.job-card')).to_have_count(1)
     page.locator('#search').fill('missing-9876')
     expect(page.locator('.empty-state')).to_be_visible()
@@ -97,7 +100,7 @@ with sync_playwright() as p:
     expect(preview.locator('#tasks input')).to_be_checked()
     check('generated app task interaction persists')
     preview.screenshot(path=str(OUT/'deliverable.png'))
-    preview.goto('http://127.0.0.1:8787/deliverable.html#broken')
+    preview.goto(base+'/deliverable.html#broken')
     expect(preview.locator('.error')).to_be_visible()
     check('invalid shared page links fail with recovery direction')
     preview.close()
@@ -132,6 +135,7 @@ with sync_playwright() as p:
     for label in ['지원 제출 기록하기','계약 확인 기록하기']:
         page.get_by_role('button',name=label,exact=True).click()
         page.get_by_role('button',name='확인한 사실 기록하기').click()
+        expect(page.locator('#dialog')).not_to_be_visible()
     page.get_by_role('button',name='납품 기록하기',exact=True).click()
     page.get_by_role('button',name='확인한 사실 기록하기').click()
     expect(page.locator('#status-error')).to_contain_text('HTTPS')
@@ -144,24 +148,27 @@ with sync_playwright() as p:
     for label in ['납품 기록하기','입금 확인 기록하기']:
         page.get_by_role('button',name=label,exact=True).click()
         page.get_by_role('button',name='확인한 사실 기록하기').click()
+        expect(page.locator('#dialog')).not_to_be_visible()
+    expect(page.locator('.progress-stage.current')).to_have_count(5)
     check('workflow records application contract delivery payment separately',page.locator('.progress-stage.current').count()==5)
     workspace_hash=page.evaluate('location.hash')
     page.locator('.sidebar a[href="#earnings"]').click()
     expect(page.locator('main')).to_contain_text('USD 100')
     expect(page.locator('main')).to_contain_text('인출 가능한 잔액이 아닙니다')
     check('income ledger shows currency separated self reports')
-    page.goto('http://127.0.0.1:8787/'+workspace_hash,wait_until='networkidle')
+    page.goto(base+'/'+workspace_hash,wait_until='networkidle')
     original=page.locator('#proposal').input_value()
     page.evaluate("(()=>{window.originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw new DOMException('quota','QuotaExceededError')};})()")
     page.locator('#proposal').fill('Unsaved quota regression')
     page.get_by_role('button',name='지원 메시지 저장',exact=True).click()
     expect(page.locator('#storage-warning')).to_be_visible()
     expect(page.locator('#toast')).to_contain_text('저장하지 못했습니다')
-    check('quota failure does not report success',page.locator('#proposal').input_value()==original)
+    check('quota failure preserves pending text without updating the saved proposal',page.locator('#proposal').input_value()=='Unsaved quota regression' and page.evaluate("JSON.parse(localStorage.getItem('aiworkjob.live.v1')).workspaces[0].proposal")==original)
     page.evaluate('(()=>{Storage.prototype.setItem=window.originalSetItem;})()')
     page.screenshot(path=str(OUT/'workspace.png'))
     page.locator('#policy').select_option('prohibited')
     page.get_by_role('button',name='조건 저장',exact=True).click()
+    expect(page.locator('#builder-form')).to_have_count(0)
     check('prohibited status locks tools prompts and past preview links',page.locator('#builder-form').count()==0 and page.locator('#work-prompt').count()==0 and page.get_by_role('link',name='제작 화면 미리보기').count()==0 and page.locator('.link-grid a').count()==0)
     page.locator('.side-nav a[href="#home"]').click()
     pending=[]

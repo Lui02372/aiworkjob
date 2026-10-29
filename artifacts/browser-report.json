@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checkedAt": "2026-10-29T10:14:15",
+  "checkedAt": "2026-10-29T15:22:04",
   "checks": [
     "real source jobs appear",
     "list is paginated",
@@ -25,7 +25,7 @@
     "delivery status requires real HTTPS URL record",
     "workflow records application contract delivery payment separately",
     "income ledger shows currency separated self reports",
-    "quota failure does not report success",
+    "quota failure preserves pending text without updating the saved proposal",
     "prohibited status locks tools prompts and past preview links",
     "background source refresh preserves unsaved form input",
     "fixture UI has no JavaScript errors"

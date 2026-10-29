@@ -57,6 +57,27 @@ export function loadState(raw){
     }
   }catch{return out;}return out;
 }
+// Merge independent records, but never overwrite a record edited in both windows.
+export function mergeState(base,local,remote){
+  const equal=(a,b)=>{
+    if(a===b)return true;
+    if(!a||!b||typeof a!=='object'||typeof b!=='object'||Array.isArray(a)!==Array.isArray(b))return false;
+    const keys=Object.keys(a);return keys.length===Object.keys(b).length&&keys.every(key=>Object.hasOwn(b,key)&&equal(a[key],b[key]));
+  };
+  const conflict=(message='다른 창에서 같은 기록을 수정했습니다. 입력 내용을 복사한 뒤 새로고침해 최신 기록을 확인해 주세요.')=>{const error=new Error(message);error.name='StateConflictError';throw error;};
+  const choose=(before,ours,theirs)=>equal(ours,before)?theirs:equal(theirs,before)||equal(ours,theirs)?ours:conflict();
+  const records=(before,ours,theirs,key)=>{
+    const maps=[before,ours,theirs].map(rows=>new Map(rows.map(row=>[row[key],row])));
+    return [...new Set([...ours,...theirs,...before].map(row=>row[key]))].flatMap(id=>{
+      const row=choose(...maps.map(map=>map.get(id)));return row===undefined?[]:[row];
+    });
+  };
+  const saved=[...new Set([...remote.saved,...local.saved])].filter(id=>choose(base.saved.includes(id),local.saved.includes(id),remote.saved.includes(id)));
+  const savedJobs=records(base.savedJobs,local.savedJobs,remote.savedJobs,'guid').filter(job=>saved.includes(job.guid));
+  const workspaces=records(base.workspaces,local.workspaces,remote.workspaces,'id');
+  if(saved.length>300||workspaces.length>100)conflict('여러 창의 변경을 합치면 기기 저장 한도를 넘습니다. 입력 내용을 복사하고 최신 기록을 정리한 뒤 다시 저장해 주세요.');
+  return structuredClone({version:1,profile:choose(base.profile,local.profile,remote.profile),saved,savedJobs,workspaces});
+}
 export function createWorkspace(rawJob){const job=normalizeJob(rawJob);if(!job)throw Error('만료되었거나 확인할 수 없는 공고입니다.');return {id:crypto.randomUUID(),rawJob,status:'accepted',verification:'api-open',createdAt:Date.now(),policy:'unknown',policyNote:'',proposal:'',checks:[],draft:{title:job.title,intro:'',body:'',template:job.category==='리서치·데이터'?'research':job.category==='자동화·개발'?'app':'landing'},delivery:'',amount:0,currency:'KRW'};}
 export function proposalDraft(job,profile){return `Hello,\n\nI am interested in the ${job.title} position at ${job.client}.\n\nMy relevant skills: ${profile.skills.join(', ')}.\n${profile.bio||'[Add a truthful example of your relevant experience.]'}\n\nBefore proceeding, I would like to confirm the location requirements, responsibilities, compensation, and the policy on AI-assisted work. I will not use AI tools for assessments or client data without permission.${profile.portfolio?'\n\nPortfolio: '+profile.portfolio:''}\n\nThank you.`;}
 export function nextStatus(w,status){const keys=Object.keys(STATUS),index=keys.indexOf(w.status);if(keys[index+1]!==status)throw Error('진행 순서에 따라 기록해 주세요.');if(status==='delivered'&&!safeUrl(w.delivery))throw Error('외부에서 열리는 HTTPS 납품 링크를 먼저 저장해 주세요.');if(status==='paid'&&!(w.amount>0))throw Error('실제로 확인한 입금액을 먼저 입력해 주세요.');return {...w,status};}

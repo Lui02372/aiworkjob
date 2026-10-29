@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Android ProjectList\commonn\b\aiworkjob\tests\check_browser.py", line 150, in <module>
+    check('workflow records application contract delivery payment separately',page.locator('.progress-stage.current').count()==5)
+  File "C:\Android ProjectList\commonn\b\aiworkjob\tests\check_browser.py", line 12, in check
+    assert condition,name
+           ^^^^^^^^^
+AssertionError: workflow records application contract delivery payment separately

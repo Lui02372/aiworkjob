@@ -1,0 +1,9 @@
+{
+  "url": "https://lui02372.github.io/aiworkjob/",
+  "version": "0.1.3",
+  "reproduced": true,
+  "before": "TEST ONLY unsaved proposal must survive another window saving a job.",
+  "after": "TEST ONLY saved proposal baseline",
+  "isolatedStorage": true,
+  "trigger": "Another tab saves a job while the workspace proposal textarea is focused."
+}

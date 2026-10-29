@@ -1,0 +1,1 @@
+{"version": "0.1.4", "directory": "C:\\Android ProjectList\\commonn\\b\\aiworkjob\\releases\\0.1.4", "assets": ["aiworkjob-0.1.4-android.apk", "aiworkjob-0.1.4-webapp.zip", "release-manifest.json", "SHA256SUMS.txt"]}

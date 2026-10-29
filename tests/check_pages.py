@@ -2,6 +2,7 @@
 import functools,http.server,json,os,threading,time
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from main_storage_checks import check_main_storage
 ROOT=Path(__file__).resolve().parents[1]
 class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*args):pass
@@ -146,6 +147,7 @@ try:
     assert not studio_errors,studio_errors
     first.screenshot(path=str(ROOT/'artifacts/studio-conflict-after.png'))
     checks.append('all five saved studio records and the latest review survive a reload')
+    checks.extend(check_main_storage(browser,base))
     browser.close()
 finally:server.shutdown();server.server_close()
 report={'status':'passed','version':json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version'],'count':len(checks),'checks':checks,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')}

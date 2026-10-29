@@ -1,0 +1,9 @@
+{
+  "project": "aiworkjob",
+  "release": "20261029T062803087821Z-72963627c138",
+  "sourceHash": "72963627c13872f882ba0f93e7a8218f060b67e286c1c2aa861dfa2efa73d019",
+  "source": "releases/aiworkjob/20261029T062803087821Z-72963627c138/source",
+  "previous": "20261029T035550602455Z-47cdaa28375a",
+  "promotedAt": "2026-10-29T06:28:03.087821+00:00",
+  "runningProcessPolicy": "preserve-until-next-start"
+}

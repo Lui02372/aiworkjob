@@ -2,6 +2,7 @@
 import base64,json,time,uuid
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
+from main_storage_checks import check_main_storage
 ROOT=Path(__file__).resolve().parents[1]
 base='https://lui02372.github.io/aiworkjob/'
 checks=[]
@@ -73,6 +74,7 @@ with sync_playwright() as p:
  page.locator('#dialog [data-action="close"]').first.click()
  page.screenshot(path=str(ROOT/'artifacts/public-web.png'))
  checks.append('deployed mobile page has no JavaScript errors')
+ checks.extend(check_main_storage(browser,base))
  browser.close()
 report={'url':base,'status':'passed','version':json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version'],'count':len(checks),'checks':checks,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')}
 (ROOT/'artifacts/public-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

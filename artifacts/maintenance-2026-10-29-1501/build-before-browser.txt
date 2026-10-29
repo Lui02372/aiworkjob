@@ -1,0 +1,1 @@
+Static Pages app prepared at dist/pages; acceptance uses explicit source review.

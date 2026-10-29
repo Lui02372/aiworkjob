@@ -4,14 +4,14 @@
 
 | 검사 | 결과 | 근거 |
 |---|---|---|
-| 핵심 로직·판매·SDK/미션 | 63개 통과 | `tests/*.test.mjs` |
-| Chrome PC·모바일의 기존 전체 흐름 | 이전 점검의 27개 시나리오 통과 기록 | `artifacts/browser-report.json`; 이번에는 변경 범위의 아래 회귀 검사를 실행 |
-| Android API 36 에뮬레이터 | 11개 검사 통과, 설치 버전 0.1.3 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
-| 프로젝트 하위 경로의 공개 웹·스튜디오 동시 편집 | 13개 검사 통과 | `artifacts/pages-report.json` |
+| 핵심 로직·판매·SDK/미션 | 71개 통과, 메인 저장 병합 회귀 8개 포함 | `tests/*.test.mjs` |
+| Chrome PC·모바일의 기존 전체 흐름 | B v0.1.4의 27개 시나리오 통과 | `artifacts/browser-report.json`; 명시한 B 서버 버전 일치 확인 |
+| Android API 36 에뮬레이터 | 11개 검사 통과, 설치 버전 0.1.4 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
+| 프로젝트 하위 경로의 공개 웹·동시 편집 | 23개 검사 통과, 메인 여러 창 회귀 10개 포함 | `artifacts/pages-report.json` |
 | 공개 웹·별도 비로그인 브라우저 | v0.1.2 배포 후 8개 검사 통과; 이전 v0.1.1 실패 재현 보존 | `artifacts/maintenance-2026-10-29-1201/public-report.json` |
 | GitHub 공개 릴리스 | v0.1.2 파일 네 개를 비로그인 다운로드하여 해시·바이트 일치 확인 | `artifacts/maintenance-2026-10-29-1201/public-downloads.json` |
-| 0.1.2 → 0.1.3 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
-| 배포 ZIP 압축 해제 후 실행 | 0.1.3의 7개 검사 통과, 웹·APK 전체 자산과 버전 일치 | `artifacts/release-0.1.3-report.json` |
+| 0.1.3 → 0.1.4 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
+| 배포 ZIP 압축 해제 후 실행 | 0.1.4의 7개 검사 통과, 웹·APK 전체 자산과 버전 일치 | `artifacts/release-0.1.4-report.json` |
 | 판매·모의 입금·실제 키트 다운로드 화면 | 11개 통과, 실제 결제사 연결·매출 아님 | `artifacts/commerce-report.json` |
 | 계정 관리자 미션 화면 | 8개 통과, 위임·잠금·초안·수동 기록 보존 | `artifacts/account-manager-report.json` |
 | 두 앱의 실제 로컬 HTTP·SDK | 4개 통과, 새 임시 금고·모의 모델, 실제 외부 호출·수익 없음 | `artifacts/cross-app-report.json` |

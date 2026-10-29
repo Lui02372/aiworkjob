@@ -1,0 +1,59 @@
+{
+  "release": "20261029T062803087821Z-72963627c138",
+  "sourceHash": "72963627c13872f882ba0f93e7a8218f060b67e286c1c2aa861dfa2efa73d019",
+  "validation": "passed",
+  "checks": [
+    {
+      "command": [
+        "node.EXE",
+        "--check",
+        "server.mjs"
+      ],
+      "exitCode": 0,
+      "tail": ""
+    },
+    {
+      "command": [
+        "node.EXE",
+        "--test",
+        "tests\\account-manager.test.mjs",
+        "tests\\commerce.test.mjs",
+        "tests\\domain.test.mjs"
+      ],
+      "exitCode": 0,
+      "tail": "\uacfc \ud604\uc7ac \uc791\uc5c5\uc758 \ucd08\uc548 \ud3b8\uc9d1\uc744 \ud568\uaed8 \ubcf4\uc874\ud55c\ub2e4 (0.617ms)\n\u2714 38. \uc11c\ub85c \ub2e4\ub978 \uc791\uc5c5\uc758 \ubcc0\uacbd\uc740 \uc720\uc9c0\ud558\uace0 \uac19\uc740 \uc791\uc5c5\uc758 \uad8c\ud55c \ubcc0\uacbd\uc740 \ub36e\uc5b4\uc4f0\uc9c0 \uc54a\ub294\ub2e4 (0.7214ms)\n\u2714 39. \ub3d9\uc77c \ud504\ub85c\ud544 \ucda9\ub3cc\uc744 \uac70\uc808\ud558\uace0 \uac19\uc740 \ub0b4\uc6a9\uc758 \uc7ac\uc800\uc7a5\uc740 \ud5c8\uc6a9\ud55c\ub2e4 (0.2015ms)\n\u2714 40. \ub2e4\ub978 \ucc3d\uc5d0\uc11c \uc9c0\uc6b4 \uc791\uc5c5\uc744 \uc624\ub798\ub41c \ud3b8\uc9d1\uc73c\ub85c \ub418\uc0b4\ub9ac\uc9c0 \uc54a\ub294\ub2e4 (0.2352ms)\n\u2714 41. \uc800\uc7a5 \ucde8\uc18c\uc640 \ubcc4\ub3c4 \ucd94\uac00\ub97c \ud569\uce60 \ub54c \uc6d0\ubb38 \uc2a4\ub0c5\uc0f7\ub3c4 \uc77c\uce58\uc2dc\ud0a8\ub2e4 (0.1805ms)\n\u2714 42. \ubcd1\ud569 \uacb0\uacfc\uac00 \uc800\uc7a5 \ud55c\ub3c4\ub97c \ub118\uc73c\uba74 \uc77c\ubd80 \uae30\ub85d\uc744 \uc870\uc6a9\ud788 \ubc84\ub9ac\uc9c0 \uc54a\ub294\ub2e4 (0.919ms)\n\u2714 43. \ud504\ub85c\ud544 \uc800\uc7a5\uacfc \uc7ac\ub85c\ub529\uc73c\ub85c \uc18d\uc131 \uc21c\uc11c\uac00 \ub2ec\ub77c\uc838\ub3c4 \uac70\uc9d3 \ucda9\ub3cc\uc744 \ub9cc\ub4e4\uc9c0 \uc54a\ub294\ub2e4 (0.3315ms)\n\u2139 tests 71\n\u2139 suites 0\n\u2139 pass 71\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 565.23\n"
+    },
+    {
+      "command": [
+        "node.EXE",
+        "tools/build-pages.mjs"
+      ],
+      "exitCode": 0,
+      "tail": "Static Pages app prepared at dist/pages; acceptance uses explicit source review.\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_pages.py"
+      ],
+      "exitCode": 0,
+      "tail": "{\"status\": \"passed\", \"checks\": 23}\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_commerce.py"
+      ],
+      "exitCode": 0,
+      "tail": "{\"status\": \"passed\", \"checks\": 11}\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_account_manager.py"
+      ],
+      "exitCode": 0,
+      "tail": "{\"status\": \"passed\", \"checks\": 8}\n"
+    }
+  ]
+}

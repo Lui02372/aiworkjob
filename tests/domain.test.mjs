@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {defaultState,normalizeJob,match,requirementFlags,safeUrl,isSourceUrl,salary,loadState,createWorkspace,nextStatus,proposalDraft,buildBrief,escapeHtml} from '../web/domain.js';
+import {defaultState,normalizeJob,match,requirementFlags,safeUrl,isSourceUrl,salary,loadState,mergeState,createWorkspace,nextStatus,proposalDraft,buildBrief,escapeHtml} from '../web/domain.js';
 import {checkPath,handleApi} from '../api.mjs';
 const raw={title:'Content Creator',companyName:'Test fixture company',guid:'https://himalayas.app/companies/test/jobs/content-creator',applicationLink:'https://himalayas.app/companies/test/jobs/content-creator?utm_source=api',excerpt:'Content research and editing.',description:'Content creation and editing. Entry-level position.',employmentType:'Contractor',locationRestrictions:[],timezoneRestrictions:[9],expiryDate:Math.floor(Date.now()/1000)+86400,pubDate:Math.floor(Date.now()/1000),minSalary:20,maxSalary:30,currency:'USD',salaryPeriod:'hourly'};
 const profile={...defaultState().profile,configured:true,english:true};
@@ -40,3 +40,69 @@ test('32. AI 경험 불필요는 AI 사용 금지가 아니다',()=>assert.equal
 test('33. 단수 경력 year와 단어형 연수도 비교한다',()=>{assert.equal(requirementFlags({...job,description:'At least 1 year of experience required.'}).minYears,1);assert.equal(requirementFlags({...job,description:'Five years of Figma experience required.'}).minYears,5);});
 test('34. 디자인 소프트웨어 라이선스는 전문면허가 아니다',()=>assert.equal(requirementFlags({...job,description:'Use licensed design software.'}).licensed,false));
 test('35. 저장한 공고의 스냅샷은 다음 피드와 독립적이다',()=>{const s=defaultState();s.saved=[raw.guid];s.savedJobs=[raw];assert.equal(loadState(JSON.stringify(s)).savedJobs[0].guid,raw.guid);});
+
+test('36. 두 창의 서로 다른 저장 공고와 원문 스냅샷을 함께 보존한다',()=>{
+  const base=defaultState(),local=structuredClone(base),remote=structuredClone(base);
+  const second={...raw,guid:raw.guid+'-second'};
+  local.saved=[raw.guid];local.savedJobs=[raw];remote.saved=[second.guid];remote.savedJobs=[second];
+  const merged=mergeState(base,local,remote);
+  assert.deepEqual(new Set(merged.saved),new Set([raw.guid,second.guid]));
+  assert.deepEqual(new Set(merged.savedJobs.map(j=>j.guid)),new Set(merged.saved));
+  assert.deepEqual(base,defaultState());
+});
+
+test('37. 다른 창의 일감 저장과 현재 작업의 초안 편집을 함께 보존한다',()=>{
+  const base=defaultState();base.workspaces=[createWorkspace(raw)];
+  const local=structuredClone(base),remote=structuredClone(base);
+  local.workspaces[0].proposal='Locally reviewed proposal';
+  remote.saved=[raw.guid];remote.savedJobs=[raw];remote.profile.name='Other window';
+  const merged=mergeState(base,local,remote);
+  assert.equal(merged.workspaces[0].proposal,local.workspaces[0].proposal);
+  assert.equal(merged.profile.name,'Other window');assert.deepEqual(merged.saved,[raw.guid]);
+});
+
+test('38. 서로 다른 작업의 변경은 유지하고 같은 작업의 권한 변경은 덮어쓰지 않는다',()=>{
+  const base=defaultState();base.workspaces=[createWorkspace(raw),createWorkspace({...raw,guid:raw.guid+'-second'})];
+  const local=structuredClone(base),remote=structuredClone(base);
+  local.workspaces[0].proposal='Pending proposal';remote.workspaces[1].amount=123;
+  const merged=mergeState(base,local,remote);
+  assert.equal(merged.workspaces[0].proposal,'Pending proposal');assert.equal(merged.workspaces[1].amount,123);
+  remote.workspaces[0].policy='prohibited';
+  assert.throws(()=>mergeState(base,local,remote),{name:'StateConflictError'});
+});
+
+test('39. 동일 프로필 충돌을 거절하고 같은 내용의 재저장은 허용한다',()=>{
+  const base=defaultState(),local=structuredClone(base),remote=structuredClone(base);
+  local.profile.name='First edit';remote.profile.name='Second edit';
+  assert.throws(()=>mergeState(base,local,remote),{name:'StateConflictError'});
+  assert.deepEqual(mergeState(base,local,local),local);
+});
+
+test('40. 다른 창에서 지운 작업을 오래된 편집으로 되살리지 않는다',()=>{
+  const base=defaultState();base.workspaces=[createWorkspace(raw)];
+  const local=structuredClone(base),remote=structuredClone(base);
+  local.workspaces[0].proposal='Stale edit';remote.workspaces=[];
+  assert.throws(()=>mergeState(base,local,remote),{name:'StateConflictError'});
+});
+
+test('41. 저장 취소와 별도 추가를 합칠 때 원문 스냅샷도 일치시킨다',()=>{
+  const base=defaultState();base.saved=[raw.guid];base.savedJobs=[raw];
+  const local=defaultState(),remote=structuredClone(base),second={...raw,guid:raw.guid+'-second'};
+  remote.saved.push(second.guid);remote.savedJobs.push(second);
+  const merged=mergeState(base,local,remote);
+  assert.deepEqual(merged.saved,[second.guid]);assert.deepEqual(merged.savedJobs,[second]);
+});
+
+test('42. 병합 결과가 저장 한도를 넘으면 일부 기록을 조용히 버리지 않는다',()=>{
+  const base=defaultState(),local=defaultState(),remote=defaultState();
+  local.saved=Array.from({length:300},(_,i)=>raw.guid+'-'+i);remote.saved=[raw.guid];
+  assert.throws(()=>mergeState(base,local,remote),{name:'StateConflictError'});
+});
+
+test('43. 프로필 저장과 재로딩으로 속성 순서가 달라져도 거짓 충돌을 만들지 않는다',()=>{
+  const base=defaultState();
+  base.profile=Object.fromEntries(Object.entries(base.profile).reverse());
+  const local=structuredClone(base),remote=loadState(JSON.stringify(base));
+  local.profile.name='Second profile save';
+  assert.equal(mergeState(base,local,remote).profile.name,'Second profile save');
+});

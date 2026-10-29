@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "checks": [
     "unknown AI permission blocks the mission flow before connecting to the vault",
     "connected screen shows delegated accounts and model budget; account selection is required",
@@ -13,5 +13,5 @@
   ],
   "count": 8,
   "environment": "isolated mocked providers; no real charge, model invocation, bank account or income",
-  "checkedAt": "2026-10-29T12:55:50"
+  "checkedAt": "2026-10-29T15:28:02"
 }

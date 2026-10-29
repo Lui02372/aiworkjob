@@ -1,0 +1,5 @@
+
+> aiworkjob@0.1.4 build:pages
+> node tools/build-pages.mjs
+
+Static Pages app prepared at dist/pages; acceptance uses explicit source review.
