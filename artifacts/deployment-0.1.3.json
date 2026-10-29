@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "version": "0.1.3",
+  "sourceCommit": "37c29b602100f2a5ad2bc17678912977a4ea02ab",
+  "releaseUrl": "https://github.com/Lui02372/aiworkjob/releases/tag/v0.1.3",
+  "publicUrl": "https://lui02372.github.io/aiworkjob/",
+  "pagesRun": "https://github.com/Lui02372/aiworkjob/actions/runs/40814954759",
+  "publicBrowserChecks": 9,
+  "publicAssetsVerified": 4,
+  "sharedA": "20261029T035550602455Z-47cdaa28375a",
+  "sharedASmoke": "http://127.0.0.1:8787/",
+  "vaultConnected": false,
+  "checkoutAvailable": false,
+  "verifiedIncome": 0,
+  "checkedAt": "2026-10-29T13:02:02"
+}

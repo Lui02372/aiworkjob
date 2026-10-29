@@ -1,8 +1,8 @@
 {
   "url": "https://lui02372.github.io/aiworkjob/",
   "status": "passed",
-  "version": "0.1.2",
-  "count": 8,
+  "version": "0.1.3",
+  "count": 9,
   "checks": [
     "deployed public configuration matches the release version and static feed mode",
     "public web app opens without owner login and shows current feed data",
@@ -11,7 +11,8 @@
     "shared generated app page opens in a separate unauthenticated browser",
     "deployed studio preserves evidence saved in two browser tabs",
     "deployed studio rejects a conflicting edit while preserving pending input",
+    "public product sample opens while unconnected checkout stays disabled",
     "deployed mobile page has no JavaScript errors"
   ],
-  "checkedAt": "2026-10-29T12:04:11"
+  "checkedAt": "2026-10-29T12:59:37"
 }
