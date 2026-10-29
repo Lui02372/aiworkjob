@@ -1,12 +1,31 @@
 {
-  "checkedAt": "2026-10-29T00:59:18.443Z",
+  "checkedAt": "2026-10-29T01:20:36.471Z",
+  "version": "0.1.1",
   "assessment": "구현자의 내부 근거 기반 점검. 성과나 수익 예측 점수가 아님.",
   "status": "core-flow-verified; external integrations remain",
-  "totalChecks": 71,
+  "totalChecks": 91,
   "domain": 35,
   "browser": 27,
-  "android": 9,
-  "score": 76,
+  "android": 10,
+  "supplemental": [
+    {
+      "path": "artifacts/pages-report.json",
+      "count": 5
+    },
+    {
+      "path": "artifacts/public-report.json",
+      "count": 5
+    },
+    {
+      "path": "artifacts/android-update-report.json",
+      "count": 4
+    },
+    {
+      "path": "artifacts/release-0.1.1-report.json",
+      "count": 5
+    }
+  ],
+  "score": 78,
   "maxScore": 100,
   "axes": [
     {
@@ -33,9 +52,9 @@
     {
       "name": "링크 실행성",
       "weight": 10,
-      "grade": 4,
-      "note": "원문 링크·작업도구·제작 링크 확인. 웹의 공개 범위에 따라 공유 가능 대상이 다름",
-      "evidence": "artifacts/browser-report.json"
+      "grade": 5,
+      "note": "원문 링크·작업도구·제작 링크와 GitHub 공개 웹의 비로그인 열람 확인",
+      "evidence": "artifacts/public-report.json"
     },
     {
       "name": "실행 검증",

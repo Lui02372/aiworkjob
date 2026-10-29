@@ -8,6 +8,8 @@
     {"id":"studio","label":"5개 분야의 실행·검토 스튜디오","status":"implemented","evidence":["web/studio.js","web/studio.html"]},
     {"id":"page","label":"제작 페이지·기능 시안·공유 링크","status":"implemented","evidence":["web/deliverable.js","web/deliverable.html","web/config.js"]},
     {"id":"worker","label":"Sites Worker 게시 패키지","status":"implemented","evidence":["tools/build-site.mjs"]},
+    {"id":"public-web","label":"GitHub 공개 웹·원문 직접 확인","status":"implemented","evidence":["tools/build-pages.mjs","web/config.js","tests/check_pages.py"]},
+    {"id":"daily","label":"매일 공고 갱신·검증 후 게시","status":"implemented","evidence":["tools/refresh-feed.mjs","tests/check_pages.py","docs/VALIDATION.md"]},
     {"id":"future","label":"국내 API·클라우드 동기화·서버 LLM·결제","status":"planned","description":"설계 범위. 현재 미연결","evidence":["docs/RESEARCH.md"]}
   ],
   "edges":[
@@ -20,6 +22,9 @@
     {"from":"studio","to":"page","label":"본문을 포함한 미리보기 링크","status":"implemented"},
     {"from":"ui","to":"page","label":"화면 편집기","status":"implemented"},
     {"from":"worker","to":"web-api","label":"동일 API 코드 번들","status":"implemented"},
+    {"from":"ui","to":"public-web","label":"공개 제작 링크 공유","status":"implemented"},
+    {"from":"daily","to":"public-web","label":"검증 통과한 정적 피드 게시","status":"implemented"},
+    {"from":"daily","to":"source","label":"공식 API 일일 수집","status":"conditional"},
     {"from":"ui","to":"future","label":"후속 통합","status":"planned"}
   ]
 }

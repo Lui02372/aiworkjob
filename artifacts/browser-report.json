@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "checkedAt": "2026-10-29T09:58:30",
+  "checkedAt": "2026-10-29T10:14:15",
   "checks": [
     "real source jobs appear",
     "list is paginated",

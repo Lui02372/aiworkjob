@@ -2,7 +2,7 @@
 import {readdir,readFile,mkdir,writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
-const ignored=new Set(['node_modules','.git','dist','worker','build','target','.venv','venv','__pycache__','.gradle','.idea','codevisualization','data']);
+const ignored=new Set(['node_modules','.git','dist','worker','build','target','.venv','venv','__pycache__','.gradle','.idea','codevisualization','data','release-smoke','releases']);
 const extensions=new Set(['.js','.jsx','.mjs','.cjs','.ts','.tsx','.java','.py','.sql','.css','.html','.json','.yml','.yaml','.md','.ps1','.xml']);
 const source=/\.(?:[cm]?js|jsx|tsx?|java|py)$/;
 const slash=p=>p.split(path.sep).join('/');

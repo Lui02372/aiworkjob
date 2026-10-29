@@ -1,7 +1,9 @@
 {
   "status": "passed",
+  "version": "0.1.1",
   "serial": "emulator-5560",
   "checks": [
+    "installed Android version matches the source release",
     "native bundled interface loads",
     "native interface has no horizontal overflow",
     "native interface does not expose a JS bridge",
@@ -12,8 +14,8 @@
     "native bottom navigation opens profile",
     "Android back returns to home"
   ],
-  "count": 9,
+  "count": 10,
   "officialJobs": 97,
   "source": "Himalayas",
-  "checkedAt": "2026-10-29T09:59:52"
+  "checkedAt": "2026-10-29T10:19:49"
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-29T00:59:56.544Z",
+  "generatedAt": "2026-10-29T01:21:07.579Z",
   "scope": "First-party source inventory; excludes dependencies/builds/secrets/data directories. JS/TS literal relative import/require/file-URL edges only; heuristic, not complete semantic analysis. Java/Python inventoried but not resolved. No runtime connectivity claim.",
   "files": [
     "README.md",
@@ -11,12 +11,19 @@
     "android/app/src/main/res/values/styles.xml",
     "api.mjs",
     "artifacts/android-report.json",
+    "artifacts/android-update-report.json",
     "artifacts/browser-report.json",
     "artifacts/domain-report.json",
+    "artifacts/maintenance-registration.json",
+    "artifacts/pages-report.json",
+    "artifacts/public-report.json",
     "artifacts/quality-report.json",
+    "artifacts/release-0.1.0-report.json",
+    "artifacts/release-0.1.1-report.json",
     "docs/DESIGN.md",
     "docs/IMPROVEMENTS.md",
     "docs/ITERATION_PROMPT.md",
+    "docs/MAINTENANCE_PROMPT.md",
     "docs/RESEARCH.md",
     "docs/VALIDATION.md",
     "docs/architecture.json",
@@ -24,11 +31,19 @@
     "server.mjs",
     "tests/check_android.py",
     "tests/check_browser.py",
+    "tests/check_pages.py",
+    "tests/check_public.py",
+    "tests/check_release.py",
+    "tests/check_update.py",
     "tests/domain.test.mjs",
+    "tools/build-pages.mjs",
     "tools/build-site.mjs",
     "tools/codevisualization-viewer.html",
     "tools/codevisualization.mjs",
+    "tools/maintenance_due.py",
+    "tools/package_release.py",
     "tools/quality.mjs",
+    "tools/refresh-feed.mjs",
     "tools/validate-artifact.mjs",
     "web/app.js",
     "web/catalog.js",
@@ -72,6 +87,13 @@
       "to": "tools/codevisualization-viewer.html",
       "kind": "file-url",
       "line": 32,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tools/refresh-feed.mjs",
+      "to": "api.mjs",
+      "kind": "import",
+      "line": 2,
       "confidence": "static-heuristic"
     },
     {
@@ -199,22 +221,77 @@
     {
       "file": "tests/check_android.py",
       "kind": "network",
-      "line": 25
+      "line": 29
     },
     {
       "file": "tests/check_android.py",
       "kind": "network",
-      "line": 28
-    },
-    {
-      "file": "tests/check_android.py",
-      "kind": "storage",
       "line": 32
     },
     {
       "file": "tests/check_android.py",
       "kind": "storage",
-      "line": 44
+      "line": 22
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 36
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 48
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 48
+    },
+    {
+      "file": "tests/check_pages.py",
+      "kind": "storage",
+      "line": 19
+    },
+    {
+      "file": "tests/check_public.py",
+      "kind": "storage",
+      "line": 19
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 24
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 25
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 26
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 33
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 39
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 40
+    },
+    {
+      "file": "tests/check_update.py",
+      "kind": "storage",
+      "line": 46
     },
     {
       "file": "tests/domain.test.mjs",
@@ -305,6 +382,11 @@
       "file": "tools/codevisualization.mjs",
       "kind": "loop",
       "line": 27
+    },
+    {
+      "file": "tools/quality.mjs",
+      "kind": "loop",
+      "line": 22
     },
     {
       "file": "web/app.js",
@@ -539,6 +621,26 @@
         ]
       },
       {
+        "id": "public-web",
+        "label": "GitHub 공개 웹·원문 직접 확인",
+        "status": "implemented",
+        "evidence": [
+          "tools/build-pages.mjs",
+          "web/config.js",
+          "tests/check_pages.py"
+        ]
+      },
+      {
+        "id": "daily",
+        "label": "매일 공고 갱신·검증 후 게시",
+        "status": "implemented",
+        "evidence": [
+          "tools/refresh-feed.mjs",
+          "tests/check_pages.py",
+          "docs/VALIDATION.md"
+        ]
+      },
+      {
         "id": "future",
         "label": "국내 API·클라우드 동기화·서버 LLM·결제",
         "status": "planned",
@@ -602,6 +704,24 @@
         "to": "web-api",
         "label": "동일 API 코드 번들",
         "status": "implemented"
+      },
+      {
+        "from": "ui",
+        "to": "public-web",
+        "label": "공개 제작 링크 공유",
+        "status": "implemented"
+      },
+      {
+        "from": "daily",
+        "to": "public-web",
+        "label": "검증 통과한 정적 피드 게시",
+        "status": "implemented"
+      },
+      {
+        "from": "daily",
+        "to": "source",
+        "label": "공식 API 일일 수집",
+        "status": "conditional"
       },
       {
         "from": "ui",

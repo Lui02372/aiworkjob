@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "count": 4,
+  "checks": [
+    "baseline data persists across process restart before the update",
+    "0.1.1 installs over 0.1.0 with the existing signature",
+    "in-place update preserves browser data and profile storage",
+    "updated Android app uses live API mode and the public share origin"
+  ],
+  "serial": "emulator-5560",
+  "checkedAt": "2026-10-29T10:18:35"
+}

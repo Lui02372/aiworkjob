@@ -19,6 +19,10 @@ try:
     browser=p.chromium.connect_over_cdp('http://127.0.0.1:9224',no_defaults=True)
     page=browser.contexts[0].pages[0]
     page.wait_for_selector('.job-card',timeout=40000)
+    original_state=page.evaluate("localStorage.getItem('aiworkjob.live.v1')")
+    installed_version=page.evaluate("async()=>{const c=await import('./config.js');return c.APP_VERSION}")
+    expected_version=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
+    check('installed Android version matches the source release',installed_version==expected_version)
     check('native bundled interface loads',page.title().startswith('aiworkjob'))
     check('native interface has no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
     check('native interface does not expose a JS bridge',page.evaluate("typeof window.Android==='undefined'"))
@@ -41,10 +45,10 @@ try:
     adb('shell','input','keyevent','4')
     page.wait_for_url('**#home')
     check('Android back returns to home')
-    page.evaluate("localStorage.removeItem('aiworkjob.live.v1');location.reload()")
+    page.evaluate("original=>{if(original===null)localStorage.removeItem('aiworkjob.live.v1');else localStorage.setItem('aiworkjob.live.v1',original);location.reload();}",original_state)
     page.wait_for_selector('.job-card',timeout=35000)
     page.screenshot(path=str(ROOT/'artifacts/android.png'))
-    (ROOT/'artifacts/android-report.json').write_text(json.dumps({'status':'passed','serial':serial,'checks':checks,'count':len(checks),'officialJobs':len(live['data']['jobs']),'source':'Himalayas','checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')},ensure_ascii=False,indent=2),encoding='utf-8')
+    (ROOT/'artifacts/android-report.json').write_text(json.dumps({'status':'passed','version':installed_version,'serial':serial,'checks':checks,'count':len(checks),'officialJobs':len(live['data']['jobs']),'source':'Himalayas','checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')},ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({'status':'passed','checks':len(checks),'officialJobs':len(live['data']['jobs'])}))
     browser.close()
 finally:adb('forward','--remove','tcp:9224')

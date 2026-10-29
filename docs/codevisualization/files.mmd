@@ -8,48 +8,64 @@ flowchart LR
  n6["android/app/src/main/res/values/styles.xml"]
  n7["api.mjs"]
  n8["artifacts/android-report.json"]
- n9["artifacts/browser-report.json"]
- n10["artifacts/domain-report.json"]
- n11["artifacts/quality-report.json"]
- n12["docs/DESIGN.md"]
- n13["docs/IMPROVEMENTS.md"]
- n14["docs/ITERATION_PROMPT.md"]
- n15["docs/RESEARCH.md"]
- n16["docs/VALIDATION.md"]
- n17["docs/architecture.json"]
- n18["package.json"]
- n19["server.mjs"]
- n20["tests/check_android.py"]
- n21["tests/check_browser.py"]
- n22["tests/domain.test.mjs"]
- n23["tools/build-site.mjs"]
- n24["tools/codevisualization-viewer.html"]
- n25["tools/codevisualization.mjs"]
- n26["tools/quality.mjs"]
- n27["tools/validate-artifact.mjs"]
- n28["web/app.js"]
- n29["web/catalog.js"]
- n30["web/config.js"]
- n31["web/deliverable.css"]
- n32["web/deliverable.html"]
- n33["web/deliverable.js"]
- n34["web/domain.js"]
- n35["web/icons.js"]
- n36["web/index.html"]
- n37["web/snapshot.json"]
- n38["web/studio.css"]
- n39["web/studio.html"]
- n40["web/studio.js"]
- n41["web/styles.css"]
- n19 -->|import| n7
- n22 -->|import| n34
- n22 -->|import| n7
- n25 -->|file-url| n24
- n28 -->|import| n30
- n28 -->|import| n29
- n28 -->|import| n34
- n28 -->|import| n35
- n33 -->|import| n34
- n34 -->|import| n29
- n40 -->|import| n30
- n40 -->|import| n34
+ n9["artifacts/android-update-report.json"]
+ n10["artifacts/browser-report.json"]
+ n11["artifacts/domain-report.json"]
+ n12["artifacts/maintenance-registration.json"]
+ n13["artifacts/pages-report.json"]
+ n14["artifacts/public-report.json"]
+ n15["artifacts/quality-report.json"]
+ n16["artifacts/release-0.1.0-report.json"]
+ n17["artifacts/release-0.1.1-report.json"]
+ n18["docs/DESIGN.md"]
+ n19["docs/IMPROVEMENTS.md"]
+ n20["docs/ITERATION_PROMPT.md"]
+ n21["docs/MAINTENANCE_PROMPT.md"]
+ n22["docs/RESEARCH.md"]
+ n23["docs/VALIDATION.md"]
+ n24["docs/architecture.json"]
+ n25["package.json"]
+ n26["server.mjs"]
+ n27["tests/check_android.py"]
+ n28["tests/check_browser.py"]
+ n29["tests/check_pages.py"]
+ n30["tests/check_public.py"]
+ n31["tests/check_release.py"]
+ n32["tests/check_update.py"]
+ n33["tests/domain.test.mjs"]
+ n34["tools/build-pages.mjs"]
+ n35["tools/build-site.mjs"]
+ n36["tools/codevisualization-viewer.html"]
+ n37["tools/codevisualization.mjs"]
+ n38["tools/maintenance_due.py"]
+ n39["tools/package_release.py"]
+ n40["tools/quality.mjs"]
+ n41["tools/refresh-feed.mjs"]
+ n42["tools/validate-artifact.mjs"]
+ n43["web/app.js"]
+ n44["web/catalog.js"]
+ n45["web/config.js"]
+ n46["web/deliverable.css"]
+ n47["web/deliverable.html"]
+ n48["web/deliverable.js"]
+ n49["web/domain.js"]
+ n50["web/icons.js"]
+ n51["web/index.html"]
+ n52["web/snapshot.json"]
+ n53["web/studio.css"]
+ n54["web/studio.html"]
+ n55["web/studio.js"]
+ n56["web/styles.css"]
+ n26 -->|import| n7
+ n33 -->|import| n49
+ n33 -->|import| n7
+ n37 -->|file-url| n36
+ n41 -->|import| n7
+ n43 -->|import| n45
+ n43 -->|import| n44
+ n43 -->|import| n49
+ n43 -->|import| n50
+ n48 -->|import| n49
+ n49 -->|import| n44
+ n55 -->|import| n45
+ n55 -->|import| n49

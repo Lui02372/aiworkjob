@@ -4,10 +4,13 @@ AI 활용자가 실제 공고를 찾고, 자신의 조건을 비교한 뒤 지�
 
 **다운로드:** [GitHub Releases](https://github.com/Lui02372/aiworkjob/releases)에서 Android APK와 압축 해제 후 실행하는 웹앱 ZIP을 받을 수 있습니다.
 
+**설치 없이 웹 실행:** <https://lui02372.github.io/aiworkjob/>. 공개 웹은 갱신된 공고 피드와 원문 직접 확인을 사용합니다. Android·Node 실행판은 모집 상태를 API에서 다시 확인합니다.
+
 ## 실행
 
 - Android 테스트 설치 파일: [aiworkjob-debug.apk](aiworkjob-debug.apk). Android 8.0 이상. 개발용 서명이며 Play 스토어 게시용 서명은 별도입니다.
 - PC: 이 폴더에서 `node server.mjs` → <http://127.0.0.1:8787>.
+- Windows ZIP은 압축을 푼 뒤 `start-aiworkjob.bat`을 실행하면 브라우저가 열립니다.
 - Node 24와 설치된 JDK 21·Android SDK 36·Gradle 9.6.0을 사용했습니다. 런타임 npm 패키지를 추가하지 않았습니다.
 
 ## 사용 흐름

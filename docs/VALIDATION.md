@@ -6,7 +6,11 @@
 |---|---|---|
 | 핵심 로직 | 35개 통과 | `tests/domain.test.mjs` |
 | Chrome PC·모바일 | 27개 시나리오 통과 | `artifacts/browser-report.json` |
-| Android API 36 에뮬레이터 | 9개 검사 통과 | `artifacts/android-report.json` |
+| Android API 36 에뮬레이터 | 10개 검사 통과, 설치 버전 0.1.1 확인 | `artifacts/android-report.json` |
+| 프로젝트 하위 경로의 공개 웹 | 5개 검사 통과 | `artifacts/pages-report.json` |
+| 게시된 공개 주소·별도 비로그인 브라우저 | 5개 검사 통과 | `artifacts/public-report.json` |
+| 0.1.0 → 0.1.1 APK 업데이트 | 4개 검사 통과, 기존 저장 데이터 유지 | `artifacts/android-update-report.json` |
+| 배포 ZIP 압축 해제 후 실행 | 5개 검사 통과 | `artifacts/release-0.1.1-report.json` |
 | 네이티브 실제 공고 수집 | 97건, 개별 공고 open 상태 확인 | Android 검증 보고서. 확인 시점의 수치 |
 | Android 빌드·lint | 성공, lint 오류 0 | `android/app/build/reports/lint-results-debug.txt` |
 | 코드 지도 | 파일 검색·노드 선택·작은 화면 검사 통과 | 오프라인 `docs/codevisualization/index.html` |
@@ -19,4 +23,10 @@
 
 현재 지원 수준: 실제 공고 탐색과 개인 작업 준비·제작 시안·납품 사실 기록을 사용할 수 있다. 서버 생성형 AI 실행, 공고별 완성 앱 자동 구현, 실제 채용 확정, 고객 결제와 정산은 연결되지 않았다. 전체 서비스 완성이나 수익 실현으로 판정하지 않는다.
 
-내부 근거 기반 평가는 76/100이다. 공식 데이터 16/20, 지원자격 비교 12/20, AI 조건 12/15, 링크 8/10, 실행 10/10, 저장 8/10, 사용성 8/10, 자동 구현 범위 2/5. 채용 확률·서비스 매출을 평가한 점수가 아니다. 계산 근거는 `artifacts/quality-report.json`이며 실제 검사 합계는 71개다.
+내부 근거 기반 평가는 초기 76/100에서 공개 링크 열람 검증 후 78/100으로 갱신했다. 공식 데이터 16/20, 지원자격 비교 12/20, AI 조건 12/15, 링크 10/10, 실행 10/10, 저장 8/10, 사용성 8/10, 자동 구현 범위 2/5. 채용 확률·서비스 매출을 평가한 점수가 아니다. 계산 근거는 `artifacts/quality-report.json`이며 검사 합계는 91개다.
+
+## 지속 점검
+
+- GitHub Actions: 매일 한국 시간 09:15, 공식 공고 수집 → 로직 검사 → 공개 웹 검사 → 검사 통과한 산출물 게시. 외부 API 실패 시 새 웹 산출물을 게시하지 않는다.
+- 오늘의 AI 후속 개발: Orca가 실행 중일 때 1시간 단위로 점검·실제 결함 수정·관련 검증 후 필요한 경우 새 패치 릴리스. `tools/maintenance_due.py`가 한국 시간 2026-10-29에만 실행을 허용하므로 다음 날부터 AI 작업은 건너뛴다. 날짜 제한 RRULE을 현재 호스트가 받지 않아 사전 검사로 범위를 제한했다.
+- APK 설치 검증은 에뮬레이터에서 수행했으며 실제 사용자 단말에 대한 증거는 아니다. WebView 저장이 디스크에 반영된 기준 상태를 프로세스 재시작으로 먼저 확인한 뒤 업데이트 보존을 검사했다.
