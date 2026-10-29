@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "count": 5,
+  "checks": [
+    "static app loads attributed jobs without a backend API",
+    "static acceptance requires and labels manual current-source review",
+    "preview links preserve the project path",
+    "recipient with no profile opens the shared page and keeps its payload",
+    "mobile static flow has no API calls, script errors or overflow"
+  ],
+  "checkedAt": "2026-10-29T10:11:16"
+}

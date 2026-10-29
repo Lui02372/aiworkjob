@@ -1,6 +1,6 @@
 {
   "name": "aiworkjob",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,6 +8,8 @@
     "test": "node --test tests/domain.test.mjs",
     "test:browser": "python tests/check_browser.py",
     "map": "node tools/codevisualization.mjs . docs/codevisualization docs/architecture.json",
-    "build": "node tools/build-site.mjs"
+    "build": "node tools/build-site.mjs",
+    "build:pages": "node tools/build-pages.mjs",
+    "refresh:feed": "node tools/refresh-feed.mjs"
   }
 }
