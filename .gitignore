@@ -8,5 +8,5 @@ __pycache__/
 dist/
 worker/index.js
 artifacts/*.tar.gz
-releases/
+/releases/
 artifacts/release-smoke/

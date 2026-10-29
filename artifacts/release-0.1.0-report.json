@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "status": "passed",
+  "checks": [
+    "release asset hashes match manifest",
+    "runtime ZIP excludes hosting identity and development caches",
+    "extracted runtime starts and reports release version",
+    "runtime serves the installable Android APK",
+    "extracted web app loads real job cards on mobile without JS errors"
+  ],
+  "count": 5,
+  "checkedAt": "2026-10-29T10:07:51"
+}

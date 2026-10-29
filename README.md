@@ -2,6 +2,8 @@
 
 AI 활용자가 실제 공고를 찾고, 자신의 조건을 비교한 뒤 지원 페이지·작업 도구·제작 화면 링크까지 이어가는 Android·웹 앱입니다.
 
+**다운로드:** [GitHub Releases](https://github.com/Lui02372/aiworkjob/releases)에서 Android APK와 압축 해제 후 실행하는 웹앱 ZIP을 받을 수 있습니다.
+
 ## 실행
 
 - Android 테스트 설치 파일: [aiworkjob-debug.apk](aiworkjob-debug.apk). Android 8.0 이상. 개발용 서명이며 Play 스토어 게시용 서명은 별도입니다.
