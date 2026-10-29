@@ -1,5 +1,5 @@
 """Start the extracted runtime ZIP rather than the development checkout."""
-import hashlib,json,os,socket,subprocess,sys,time,urllib.request,zipfile
+import hashlib,json,os,re,socket,subprocess,sys,time,urllib.request,zipfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
@@ -18,6 +18,15 @@ with zipfile.ZipFile(release/f'aiworkjob-{version}-webapp.zip') as z:
         assert not member.filename.startswith(('.git/','.openai/','android/')),'unexpected private/build metadata'
     z.extractall(out)
 checks.append('runtime ZIP excludes hosting identity and development caches')
+assert manifest['version']==version
+assert json.loads((out/'package.json').read_text(encoding='utf-8'))['version']==version
+config=(out/'web/config.js').read_text(encoding='utf-8')
+assert re.search(r"APP_VERSION='([^']+)'",config).group(1)==version
+assert (out/'aiworkjob-debug.apk').read_bytes()==(release/f'aiworkjob-{version}-android.apk').read_bytes()
+with zipfile.ZipFile(out/'aiworkjob-debug.apk') as apk:
+    assert apk.read('assets/config.js').decode()==config
+    assert apk.read('assets/studio.js')==(out/'web/studio.js').read_bytes()
+checks.append('manifest, web configuration and embedded Android assets match the release version')
 with socket.socket() as reservation:
     reservation.bind(('127.0.0.1',0))
     port=reservation.getsockname()[1]

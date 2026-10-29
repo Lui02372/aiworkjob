@@ -1,12 +1,21 @@
 {
   "status": "passed",
-  "count": 5,
+  "version": "0.1.2",
+  "count": 13,
   "checks": [
     "static app loads attributed jobs without a backend API",
     "static acceptance requires and labels manual current-source review",
     "preview links preserve the project path",
     "recipient with no profile opens the shared page and keeps its payload",
-    "mobile static flow has no API calls, script errors or overflow"
+    "mobile static flow has no API calls, script errors or overflow",
+    "studio tabs receive saved additions without losing earlier evidence",
+    "conflicting edits keep the pending input and cannot overwrite a saved review",
+    "closing a conflicted editor loads the latest evidence and preserves the filter",
+    "save checks current storage even when cross-tab notifications are missed",
+    "stale deletion cannot erase another tab additions",
+    "studio storage failure keeps input without reporting a successful save",
+    "studio saves use an exclusive browser lock before updating storage",
+    "all five saved studio records and the latest review survive a reload"
   ],
-  "checkedAt": "2026-10-29T10:11:16"
+  "checkedAt": "2026-10-29T11:11:16"
 }

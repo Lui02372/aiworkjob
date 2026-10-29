@@ -18,6 +18,7 @@ try:
  with sync_playwright() as p:
     browser=p.chromium.connect_over_cdp('http://127.0.0.1:9224',no_defaults=True)
     page=browser.contexts[0].pages[0]
+    page.goto('https://app.aiworkjob.local/index.html',wait_until='networkidle')
     page.wait_for_selector('.job-card',timeout=40000)
     original_state=page.evaluate("localStorage.getItem('aiworkjob.live.v1')")
     installed_version=page.evaluate("async()=>{const c=await import('./config.js');return c.APP_VERSION}")

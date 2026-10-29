@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "serial": "emulator-5560",
+  "restoredTestBaseline": "0.1.1",
+  "allExistingLocalDataPreserved": true,
+  "operation": "same-signature debug APK install -r -d; no uninstall or data clearing"
+}

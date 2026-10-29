@@ -1,5 +1,5 @@
 """Check the deployed public URL in a fresh browser without owner authentication."""
-import base64,json,time
+import base64,json,time,uuid
 from pathlib import Path
 from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
@@ -11,6 +11,10 @@ with sync_playwright() as p:
  page=context.new_page();errors=[];page.on('pageerror',lambda err:errors.append(str(err)))
  response=page.goto(base,wait_until='networkidle')
  assert response.status==200
+ deployed=page.evaluate("async()=>{const c=await import('./config.js');return {version:c.APP_VERSION,mode:c.FEED_MODE}}")
+ expected_version=json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version']
+ assert deployed=={'version':expected_version,'mode':'static'},deployed
+ checks.append('deployed public configuration matches the release version and static feed mode')
  page.wait_for_selector('.job-card',timeout=30000)
  expect(page.locator('.source-status')).to_contain_text('공개 웹 피드')
  checks.append('public web app opens without owner login and shows current feed data')
@@ -30,11 +34,40 @@ with sync_playwright() as p:
  preview.locator('#task-input').fill('공개 화면 기능 확인');preview.locator('#task-form button').click()
  expect(preview.locator('#tasks li')).to_have_count(1)
  checks.append('shared generated app page opens in a separate unauthenticated browser')
+ studio_data={'v':1,'id':'public-check-'+uuid.uuid4().hex,'title':'TEST ONLY studio retention','category':'콘텐츠·마케팅','policy':'allowed'}
+ studio_url=base+'studio.html#'+base64.b64encode(json.dumps(studio_data,ensure_ascii=False).encode()).decode()
+ first=context.new_page();first.goto(studio_url,wait_until='networkidle')
+ second=context.new_page();second.goto(studio_url,wait_until='networkidle')
+ for tab in (first,second):tab.on('pageerror',lambda err:errors.append(str(err)))
+ def add(tab,title):
+  tab.locator('#add-row').click()
+  tab.locator('#row-title').fill(title)
+  tab.locator('#row-context').fill('TEST ONLY separate browser tabs')
+  tab.locator('#row-body').fill('Public regression test evidence; no real client or job data.')
+  tab.get_by_role('button',name='작업 항목 저장',exact=True).click()
+  expect(tab.locator('#edit-dialog')).not_to_be_visible()
+ add(first,'Public evidence A')
+ expect(second.locator('.studio-row')).to_have_count(1)
+ add(second,'Public evidence B')
+ expect(first.locator('.studio-row')).to_have_count(2)
+ checks.append('deployed studio preserves evidence saved in two browser tabs')
+ second.locator('[data-edit="0"]').click()
+ second.locator('#row-body').fill('Pending edit in the second public tab.')
+ first.locator('[data-edit="0"]').click()
+ first.locator('#row-body').fill('Latest review from the first public tab.')
+ first.get_by_role('button',name='작업 항목 저장',exact=True).click()
+ expect(first.locator('#edit-dialog')).not_to_be_visible()
+ second.get_by_role('button',name='작업 항목 저장',exact=True).click()
+ expect(second.locator('#row-form .form-error')).to_contain_text('다른 창')
+ expect(second.locator('#row-body')).to_have_value('Pending edit in the second public tab.')
+ first.reload(wait_until='networkidle')
+ expect(first.locator('.studio-row p').first).to_have_text('Latest review from the first public tab.')
+ checks.append('deployed studio rejects a conflicting edit while preserving pending input')
  assert not errors,errors
  page.locator('#dialog [data-action="close"]').first.click()
  page.screenshot(path=str(ROOT/'artifacts/public-web.png'))
  checks.append('deployed mobile page has no JavaScript errors')
  browser.close()
-report={'url':base,'status':'passed','count':len(checks),'checks':checks,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')}
+report={'url':base,'status':'passed','version':json.loads((ROOT/'package.json').read_text(encoding='utf-8'))['version'],'count':len(checks),'checks':checks,'checkedAt':time.strftime('%Y-%m-%dT%H:%M:%S')}
 (ROOT/'artifacts/public-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({'status':'passed','checks':len(checks),'url':base}))

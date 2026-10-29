@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "serial": "emulator-5560",
   "checks": [
     "installed Android version matches the source release",
@@ -17,5 +17,5 @@
   "count": 10,
   "officialJobs": 97,
   "source": "Himalayas",
-  "checkedAt": "2026-10-29T10:19:49"
+  "checkedAt": "2026-10-29T11:15:56"
 }

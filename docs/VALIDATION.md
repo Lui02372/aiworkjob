@@ -5,12 +5,12 @@
 | 검사 | 결과 | 근거 |
 |---|---|---|
 | 핵심 로직 | 35개 통과 | `tests/domain.test.mjs` |
-| Chrome PC·모바일 | 27개 시나리오 통과 | `artifacts/browser-report.json` |
-| Android API 36 에뮬레이터 | 10개 검사 통과, 설치 버전 0.1.1 확인 | `artifacts/android-report.json` |
-| 프로젝트 하위 경로의 공개 웹 | 5개 검사 통과 | `artifacts/pages-report.json` |
-| 게시된 공개 주소·별도 비로그인 브라우저 | 5개 검사 통과 | `artifacts/public-report.json` |
-| 0.1.0 → 0.1.1 APK 업데이트 | 4개 검사 통과, 기존 저장 데이터 유지 | `artifacts/android-update-report.json` |
-| 배포 ZIP 압축 해제 후 실행 | 5개 검사 통과 | `artifacts/release-0.1.1-report.json` |
+| Chrome PC·모바일의 기존 전체 흐름 | 이전 점검의 27개 시나리오 통과 기록 | `artifacts/browser-report.json`; 이번에는 변경 범위의 아래 회귀 검사를 실행 |
+| Android API 36 에뮬레이터 | 10개 검사 통과, 설치 버전 0.1.2 확인, 명시 대상 emulator-5560 | `artifacts/android-report.json` |
+| 프로젝트 하위 경로의 공개 웹·스튜디오 동시 편집 | 0.1.2의 13개 검사 통과 | `artifacts/pages-report.json` |
+| 게시 전 공개 v0.1.1·별도 비로그인 브라우저 | 사전 점검 5개 검사 통과; 스튜디오 작업 소실은 별도 재현 | `artifacts/maintenance-2026-10-29-1101/baseline-public-check.json` |
+| 0.1.1 → 0.1.2 APK 업데이트 | 6개 검사 통과, 모든 기존 저장값·스튜디오 보존, 경고 없음 | `artifacts/android-update-report.json` |
+| 배포 ZIP 압축 해제 후 실행 | 0.1.2의 6개 검사 통과, 웹·APK 자산과 버전 일치 | `artifacts/release-0.1.2-report.json` |
 | 네이티브 실제 공고 수집 | 97건, 개별 공고 open 상태 확인 | Android 검증 보고서. 확인 시점의 수치 |
 | Android 빌드·lint | 성공, lint 오류 0 | `android/app/build/reports/lint-results-debug.txt` |
 | 코드 지도 | 파일 검색·노드 선택·작은 화면 검사 통과 | 오프라인 `docs/codevisualization/index.html` |
@@ -23,7 +23,9 @@
 
 현재 지원 수준: 실제 공고 탐색과 개인 작업 준비·제작 시안·납품 사실 기록을 사용할 수 있다. 서버 생성형 AI 실행, 공고별 완성 앱 자동 구현, 실제 채용 확정, 고객 결제와 정산은 연결되지 않았다. 전체 서비스 완성이나 수익 실현으로 판정하지 않는다.
 
-내부 근거 기반 평가는 초기 76/100에서 공개 링크 열람 검증 후 78/100으로 갱신했다. 공식 데이터 16/20, 지원자격 비교 12/20, AI 조건 12/15, 링크 10/10, 실행 10/10, 저장 8/10, 사용성 8/10, 자동 구현 범위 2/5. 채용 확률·서비스 매출을 평가한 점수가 아니다. 계산 근거는 `artifacts/quality-report.json`이며 검사 합계는 91개다.
+초기 구축·0.1.1 시점의 내부 근거 기반 평가는 76/100에서 공개 링크 열람 검증 후 78/100으로 갱신했다. 공식 데이터 16/20, 지원자격 비교 12/20, AI 조건 12/15, 링크 10/10, 실행 10/10, 저장 8/10, 사용성 8/10, 자동 구현 범위 2/5. 채용 확률·서비스 매출을 평가한 점수가 아니다. 당시 계산 근거는 `artifacts/quality-report.json`이며 검사 합계 91개는 당시 실행 범위다. 이번에는 점수를 다시 산정하지 않았다.
+
+0.1.2 후속 점검에서는 공개 스튜디오의 실제 여러 창 저장 손실을 재현하고 수정했다. 다른 창 변경 반영, 충돌 시 저장·삭제 차단과 입력 보존, 저장 오류, Web Locks 대기와 Android 기존 저장 호환을 확인했다. 실패 근거·검증 도구 중단 및 복구 과정은 `IMPROVEMENTS.md`의 0.1.2 기록에 있다.
 
 ## 지속 점검
 

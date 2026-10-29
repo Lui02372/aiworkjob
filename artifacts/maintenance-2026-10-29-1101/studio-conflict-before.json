@@ -1,0 +1,14 @@
+{
+  "status": "reproduced",
+  "url": "https://lui02372.github.io/aiworkjob/studio.html",
+  "version": "0.1.1",
+  "expected": [
+    "First tab saved evidence A",
+    "Second tab saved evidence B"
+  ],
+  "actual": [
+    "Second tab saved evidence B"
+  ],
+  "failure": "Second stale tab overwrote evidence saved in the first tab.",
+  "checkedAt": "2026-10-29T11:03:48+0900"
+}
