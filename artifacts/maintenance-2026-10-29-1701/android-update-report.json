@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "fromVersion": "0.1.4",
+  "version": "0.1.5",
+  "count": 6,
+  "checks": [
+    "baseline data persists across process restart before the update",
+    "0.1.5 installs over 0.1.4 with the existing signature",
+    "in-place update preserves all existing browser data, profile and studio records",
+    "updated Android app uses live API mode and the public share origin",
+    "updated Android studio reads existing rows and persists a new edit",
+    "temporary test records are removed and all original local data remains unchanged"
+  ],
+  "serial": "emulator-5560",
+  "webLocks": true,
+  "warnings": [],
+  "checkedAt": "2026-10-29T17:10:33"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "version": "0.1.5",
+  "count": 23,
+  "checks": [
+    "static app loads attributed jobs without a backend API",
+    "static acceptance requires and labels manual current-source review",
+    "preview links preserve the project path",
+    "recipient with no profile opens the shared page and keeps its payload",
+    "mobile static flow has no API calls, script errors or overflow",
+    "studio tabs receive saved additions without losing earlier evidence",
+    "conflicting edits keep the pending input and cannot overwrite a saved review",
+    "closing a conflicted editor loads the latest evidence and preserves the filter",
+    "save checks current storage even when cross-tab notifications are missed",
+    "stale deletion cannot erase another tab additions",
+    "studio storage failure keeps input without reporting a successful save",
+    "studio saves use an exclusive browser lock before updating storage",
+    "all five saved studio records and the latest review survive a reload",
+    "main workspace keeps pending proposal and merges an independently saved job across tabs and reload",
+    "same-workspace conflict preserves pending input and the other window saved result",
+    "main storage failure preserves text, avoids false success and allows a later successful save",
+    "missed storage notifications cannot erase a different saved job or leave orphan snapshots",
+    "main writes wait for an exclusive browser lock and merge the latest storage inside it",
+    "editing during a queued save keeps newer input pending instead of falsely marking it saved",
+    "blurred profile edits survive another window update and merge with saved-job changes",
+    "conflicting profile saves retain the pending form without overwriting the newer profile",
+    "storage clear preserves pending input and stale editing cannot resurrect deleted work",
+    "mobile main concurrency flow has no script errors or horizontal overflow"
+  ],
+  "checkedAt": "2026-10-29T17:14:31"
+}

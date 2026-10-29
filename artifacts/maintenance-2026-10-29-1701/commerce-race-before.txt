@@ -1,0 +1,65 @@
+✖ overlapping order checks cannot restore DONE after a newer verified cancellation (167.7047ms)
+✖ overlapping download verification cannot deliver bytes after a newer verified cancellation (44.3645ms)
+✖ overlapping approval response cannot restore a payment canceled by a later provider check (24.3063ms)
+✔ a later failed verification does not discard an earlier successful provider response (23.1448ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 1
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 399.1461
+
+✖ failing tests:
+
+test at tests\commerce.test.mjs:91:1
+✖ overlapping order checks cannot restore DONE after a newer verified cancellation (167.7047ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'DONE' !== 'CANCELED'
+  
+      at TestContext.<anonymous> (file:///C:/Android%20ProjectList/commonn/b/aiworkjob/tests/commerce.test.mjs:101:9)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'DONE',
+    expected: 'CANCELED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\commerce.test.mjs:107:1
+✖ overlapping download verification cannot deliver bytes after a newer verified cancellation (44.3645ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 409
+  
+      at TestContext.<anonymous> (file:///C:/Android%20ProjectList/commonn/b/aiworkjob/tests/commerce.test.mjs:114:39)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 409,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\commerce.test.mjs:118:1
+✖ overlapping approval response cannot restore a payment canceled by a later provider check (24.3063ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'DONE' !== 'CANCELED'
+  
+      at TestContext.<anonymous> (file:///C:/Android%20ProjectList/commonn/b/aiworkjob/tests/commerce.test.mjs:125:109)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'DONE',
+    expected: 'CANCELED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -31,6 +31,8 @@ Node 24의 SQLite와 표준 fetch만 사용한다. `AIWORKJOB_PAYMENT_MODE`는 �
 
 주문 DB와 버전별 ZIP은 채널별 runtime에 유지하며 A/B 승격으로 덮어쓰지 않는다. 관리자 통계는 마지막 결제사 확인에 따른 주문 합계다. 테스트·라이브를 분리하고 정산 잔액은 null로 둔다. 구매 복구는 구매한 브라우저의 주문 토큰으로 가능하며, 이메일 재발급·타 기기 복구·실정산 조회는 아직 없다.
 
+주문 확인·승인·웹훅·다운로드가 겹치면 SQLite의 주문별 `verification_seq`로 요청 순서를 정하고, 검증을 통과한 응답만 `verified_seq`를 갱신한다. 더 최신의 취소 확인 뒤 도착한 오래된 DONE 응답은 상태·승인액·다운로드 권한을 되돌리지 않는다. 반대로 나중 요청이 네트워크 오류나 금액 불일치로 실패해도 앞선 유효 응답을 버리지 않는다. 응답에 웹훅 secret이 없으면 현재 DB의 검증 해시를 보존한다. 같은 수정 버전으로 같은 DB를 쓰는 서버 인스턴스와 재시작에도 순번이 유지된다. 기존 DB에는 두 정수 열만 트랜잭션으로 추가하며 주문·토큰 해시·상품 파일을 보존한다. 이 동작은 임시 DB와 모의 결제사로 검증했으며 실제 PG·은행 정산의 검증을 뜻하지 않는다.
+
 공식 근거: [가상계좌 발급·입금과 웹훅 secret](https://docs.tosspayments.com/guides/v2/payment-window/integration-virtual-account), [결제 객체·승인·조회 API](https://docs.tosspayments.com/reference), [결제창 v2 SDK](https://docs.tosspayments.com/sdk/v2/js/payment). 세션에 Context7 도구가 없어 로컬 의존성을 확인한 뒤 공식 문서를 직접 조회했다. 실제 공급자 테스트·라이브 계정은 아직 연결하지 않았다.
 
 ## 계정 관리자 미션

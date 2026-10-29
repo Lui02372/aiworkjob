@@ -1,0 +1,58 @@
+{
+  "release": "20261029T081445126566Z-824123027c1f",
+  "sourceHash": "824123027c1f00e31c8a1737dc2e930b4688d0c474a48c85855955208a3773ee",
+  "checks": [
+    {
+      "command": [
+        "node.EXE",
+        "--check",
+        "server.mjs"
+      ],
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": [
+        "node.EXE",
+        "--test",
+        "tests\\account-manager.test.mjs",
+        "tests\\commerce.test.mjs",
+        "tests\\domain.test.mjs"
+      ],
+      "exitCode": 0,
+      "output": "✔ missing bridge configuration gives a truthful disconnected state and no credentials (28.4427ms)\n✔ final SDK refuses external and out-of-scope paths before attaching its token (0.9418ms)\n✔ SDK stays server-side; browser receives only current capability and scoped delegation fields (5.0523ms)\n✔ cross-site, non-loopback peer and hostile host cannot use the vault bridge (2.257ms)\n✔ public merchant configuration disables the vault bridge even through a loopback reverse proxy (0.8496ms)\n✔ unknown and prohibited AI permission cannot start a mission (1.9605ms)\n✔ expired/out-of-scope grants, paused model and call budget block creation (2.5269ms)\n✔ existing tokens without mission permission stay read-only (0.5762ms)\n✔ canonical request keys survive retry and caller keys cannot force duplicate missions (3.9294ms)\n✔ budget-reserved retry reuses an existing mission while a different new goal still hits the upstream budget (3.4718ms)\n✔ mission lists and products belong to the selected upstream workspace (3.6423ms)\n✔ product content is a draft, has no verified income and redacts the server token (0.8091ms)\n✔ SDK failures are actionable without returning secret-bearing upstream messages (2.1841ms)\n✔ invalid contract, public source URL and malformed goals never create missions (0.9046ms)\n✔ disabled or incomplete configuration never accepts payments or calls a provider (34.0457ms)\n✔ orders fix price on the server, require origin and consent, and expose no server secret (30.643ms)\n✔ order tokens isolate buyers and never grant unpaid downloads (25.6517ms)\n✔ tampered amount cannot reach payment approval (20.8083ms)\n✔ a virtual account waits for actual provider DONE; webhook status text cannot manufacture income (36.0875ms)\n✔ duplicate approvals and webhooks are idempotent; test receipts stay test receipts (34.3184ms)\n✔ concurrent approval retries share one upstream call and return independent response bodies (24.5046ms)\n✔ payment keys cannot be replayed across orders (24.4572ms)\n✔ mismatching provider amount/order/currency never unlocks a download (66.3757ms)\n✔ provider outage fails closed; an approved payment with a lost response reconciles by key (23.9721ms)\n✔ cancellations revoke future downloads and leave no settled balance (21.5195ms)\n✔ orders and original product bytes survive a server restart without a plaintext order token (28.2821ms)\n✔ expired orders and damaged product files cannot be delivered (27.5835ms)\n✔ webhook bodies are bounded and wrong methods do not change orders (32.4996ms)\n✔ overlapping order checks cannot restore DONE after a newer verified cancellation (28.7215ms)\n✔ overlapping download verification cannot deliver bytes after a newer verified cancellation (21.4611ms)\n✔ overlapping approval response cannot restore a payment canceled by a later provider check (20.6866ms)\n✔ a later failed verification does not discard an earlier successful provider response (20.7564ms)\n✔ overlapping verification across server instances sharing a DB cannot restore a canceled download (33.843ms)\n✔ a newer invalid provider payload does not suppress an earlier valid cancellation (23.3063ms)\n✔ a delayed verification for one order does not block another order (46.9178ms)\n✔ a newer payload without a webhook secret preserves the hash saved by an overlapping approval (28.8126ms)\n✔ upgrading the released legacy order schema preserves receipts, hashed tokens and product bytes (35.313ms)\n✔ 01. 만료 공고를 정규화 단계에서 제외한다 (1.2721ms)\n✔ 02. 원문 지원 링크를 보존한다 (0.1383ms)\n✔ 03. 외부 주소를 공고 API로 전달할 수 없다 (0.1695ms)\n✔ 04. 주소의 사용자정보와 실행 스킴을 거부한다 (0.157ms)\n✔ 05. 거주 국가 불일치는 점수와 관계없이 추천에서 제외한다 (2.3895ms)\n✔ 06. 근무 시간대 불일치는 추천에서 제외한다 (0.4907ms)\n✔ 07. 영어 업무 미확인은 추천에서 제외한다 (0.1949ms)\n✔ 08. 도구 이름만으로 개발자 자격을 부여하지 않는다 (0.2942ms)\n✔ 09. 리드·시니어 직무를 입문자에게 추천하지 않는다 (0.2067ms)\n✔ 10. 전문자격·학위 공고를 일반 리서치 역량으로 추천하지 않는다 (0.3614ms)\n✔ 11. 명시적 AI 사용 금지를 감지한다 (0.2943ms)\n✔ 12. 실제 경력 연수 조건을 비교한다 (0.1754ms)\n✔ 13. 점수는 명시한 100점 가중치의 합이다 (0.1123ms)\n✔ 14. 급여 통화·지급 단위를 원문대로 보존한다 (21.2262ms)\n✔ 15. 손상된 저장값은 기본 프로필로 복구한다 (1.3314ms)\n✔ 16. 저장값의 도구·국가·링크를 검증한다 (0.3949ms)\n✔ 17. 수락과 지원 제출을 구분한다 (3.9224ms)\n✔ 18. 진행 단계를 건너뛸 수 없다 (0.4045ms)\n✔ 19. 납품에는 실제 HTTPS 링크 기록이 필요하다 (0.2142ms)\n✔ 20. 입금 확인에는 양의 금액이 필요하며 중복 완료할 수 없다 (0.3135ms)\n✔ 21. 지원 초안은 사실과 허용 조건을 확인하도록 안내한다 (0.3183ms)\n✔ 22. 반복 프롬프트에 금지 상태 중단·근거 검토가 포함된다 (0.2991ms)\n✔ 23. 화면에 넣을 외부 텍스트와 속성을 이스케이프한다 (0.1421ms)\n✔ 24. API는 허용된 국가와 읽기 메서드만 받는다 (36.1144ms)\n✔ 25. 저장된 시안·작업을 새로고침 뒤에도 읽는다 (0.3873ms)\n✔ 26. 만료 공고도 기존 개인 기록은 보존한다 (0.2781ms)\n✔ 27. 공고 주소는 공식 경로로 한정한다 (0.0964ms)\n✔ 28. 복수 경력 요건은 높은 연수를 확인한다 (0.1004ms)\n✔ 29. 추가 언어·기계공학 전문직은 수동 검토로 분리한다 (0.2806ms)\n✔ 30. 에디터와 모션 직무의 분야를 구별한다 (0.1257ms)\n✔ 31. 반복 프롬프트는 상세 요구사항을 포함한다 (0.1756ms)\n✔ 32. AI 경험 불필요는 AI 사용 금지가 아니다 (0.0988ms)\n✔ 33. 단수 경력 year와 단어형 연수도 비교한다 (0.1005ms)\n✔ 34. 디자인 소프트웨어 라이선스는 전문면허가 아니다 (0.0846ms)\n✔ 35. 저장한 공고의 스냅샷은 다음 피드와 독립적이다 (0.2589ms)\n✔ 36. 두 창의 서로 다른 저장 공고와 원문 스냅샷을 함께 보존한다 (0.7198ms)\n✔ 37. 다른 창의 일감 저장과 현재 작업의 초안 편집을 함께 보존한다 (0.5112ms)\n✔ 38. 서로 다른 작업의 변경은 유지하고 같은 작업의 권한 변경은 덮어쓰지 않는다 (0.9017ms)\n✔ 39. 동일 프로필 충돌을 거절하고 같은 내용의 재저장은 허용한다 (0.2214ms)\n✔ 40. 다른 창에서 지운 작업을 오래된 편집으로 되살리지 않는다 (0.2341ms)\n✔ 41. 저장 취소와 별도 추가를 합칠 때 원문 스냅샷도 일치시킨다 (0.2136ms)\n✔ 42. 병합 결과가 저장 한도를 넘으면 일부 기록을 조용히 버리지 않는다 (0.7956ms)\n✔ 43. 프로필 저장과 재로딩으로 속성 순서가 달라져도 거짓 충돌을 만들지 않는다 (0.2384ms)\nℹ tests 80\nℹ suites 0\nℹ pass 80\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 831.6306\n"
+    },
+    {
+      "command": [
+        "node.EXE",
+        "tools/build-pages.mjs"
+      ],
+      "exitCode": 0,
+      "output": "Static Pages app prepared at dist/pages; acceptance uses explicit source review.\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_pages.py"
+      ],
+      "exitCode": 0,
+      "output": "{\"status\": \"passed\", \"checks\": 23}\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_commerce.py"
+      ],
+      "exitCode": 0,
+      "output": "{\"status\": \"passed\", \"checks\": 11}\n"
+    },
+    {
+      "command": [
+        "python.exe",
+        "tests/check_account_manager.py"
+      ],
+      "exitCode": 0,
+      "output": "{\"status\": \"passed\", \"checks\": 8}\n"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.1.5",
+  "versionCode": 6,
+  "sdk": 36,
+  "jdk": "21.0.12",
+  "build": "offline Gradle wrapper assembleDebug and lintDebug passed",
+  "lintErrors": 0,
+  "lintWarnings": 5,
+  "signingSha256": "33afd6fcd99dd6719c026191675fd3beb80c9f458c3281bc9f68db1a12cd889d",
+  "baselinePublicApkSha256": "923c92c91c825eae95f492a8192150cf9741239f680aa2c214860e505d8ce759"
+}

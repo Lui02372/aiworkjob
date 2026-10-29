@@ -1,0 +1,30 @@
+✔ disabled or incomplete configuration never accepts payments or calls a provider (28.1051ms)
+✔ orders fix price on the server, require origin and consent, and expose no server secret (27.2194ms)
+✔ order tokens isolate buyers and never grant unpaid downloads (21.9903ms)
+✔ tampered amount cannot reach payment approval (18.6825ms)
+✔ a virtual account waits for actual provider DONE; webhook status text cannot manufacture income (35.4175ms)
+✔ duplicate approvals and webhooks are idempotent; test receipts stay test receipts (31.0581ms)
+✔ concurrent approval retries share one upstream call and return independent response bodies (25.4695ms)
+✔ payment keys cannot be replayed across orders (23.4185ms)
+✔ mismatching provider amount/order/currency never unlocks a download (50.6951ms)
+✔ provider outage fails closed; an approved payment with a lost response reconciles by key (22.8961ms)
+✔ cancellations revoke future downloads and leave no settled balance (23.05ms)
+✔ orders and original product bytes survive a server restart without a plaintext order token (43.5705ms)
+✔ expired orders and damaged product files cannot be delivered (30.0692ms)
+✔ webhook bodies are bounded and wrong methods do not change orders (18.1817ms)
+✔ overlapping order checks cannot restore DONE after a newer verified cancellation (27.6582ms)
+✔ overlapping download verification cannot deliver bytes after a newer verified cancellation (22.5546ms)
+✔ overlapping approval response cannot restore a payment canceled by a later provider check (21.5929ms)
+✔ a later failed verification does not discard an earlier successful provider response (23.5298ms)
+✔ overlapping verification across server instances sharing a DB cannot restore a canceled download (40.9765ms)
+✔ a newer invalid provider payload does not suppress an earlier valid cancellation (28.7254ms)
+✔ a delayed verification for one order does not block another order (32.4729ms)
+✔ upgrading the released legacy order schema preserves receipts, hashed tokens and product bytes (40.7046ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 761.7521

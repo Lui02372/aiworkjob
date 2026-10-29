@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "viewport": 1440,
+      "searchSelectionEvidenceAndOverflow": "passed",
+      "externalRequests": 0
+    },
+    {
+      "viewport": 390,
+      "searchSelectionEvidenceAndOverflow": "passed",
+      "externalRequests": 0
+    }
+  ]
+}

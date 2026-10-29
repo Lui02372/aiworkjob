@@ -1,0 +1,24 @@
+{
+  "version": "0.1.5",
+  "assets": [
+    {
+      "name": "aiworkjob-0.1.5-android.apk",
+      "bytes": 3155081,
+      "sha256": "341c778a0dd011328e0699c0e11b905e57acada698110d38e4fff1950e123887"
+    },
+    {
+      "name": "aiworkjob-0.1.5-webapp.zip",
+      "bytes": 5404055,
+      "sha256": "ad2e4737a58efb7ae6dc6eea45c11192ddb724f05e78b8f6f0f9217abf860ffa"
+    }
+  ],
+  "android": {
+    "minSdk": 26,
+    "signing": "local development debug key"
+  },
+  "web": {
+    "node": "24+",
+    "start": "node server.mjs",
+    "url": "http://127.0.0.1:8787"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "active": {
+    "project": "aiworkjob",
+    "release": "20261029T081445126566Z-824123027c1f",
+    "sourceHash": "824123027c1f00e31c8a1737dc2e930b4688d0c474a48c85855955208a3773ee",
+    "source": "releases/aiworkjob/20261029T081445126566Z-824123027c1f/source",
+    "previous": "20261029T062803087821Z-72963627c138",
+    "promotedAt": "2026-10-29T08:14:45.126566+00:00",
+    "runningProcessPolicy": "preserve-until-next-start"
+  },
+  "runningA": {
+    "service": "aiworkjob",
+    "version": "0.1.3",
+    "source": "Himalayas",
+    "auth": "device-local records",
+    "model": "rule-based matching; no hosted LLM"
+  },
+  "sdkSha256": "dfb13782f2f233d0e2eef5d9026a39475ff936e556aaeff5e578d2acf9300e53"
+}

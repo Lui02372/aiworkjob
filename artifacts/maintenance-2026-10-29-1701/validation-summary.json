@@ -1,0 +1,16 @@
+{
+  "version": "0.1.5",
+  "node": 80,
+  "commerceNode": 23,
+  "newConcurrencyAndMigrationRegressions": 9,
+  "pages": 23,
+  "commerceBrowser": 11,
+  "accountManagerBrowser": 8,
+  "crossAppHttp": 4,
+  "androidUpdate": 6,
+  "android": 11,
+  "extractedRelease": 7,
+  "realModelCalls": 0,
+  "verifiedIncome": false,
+  "realPaymentProviderCalls": 0
+}

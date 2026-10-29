@@ -37,8 +37,16 @@ export function createStore({env=process.env,fetchImpl=globalThis.fetch,dbPath,n
    id TEXT PRIMARY KEY, token_hash TEXT NOT NULL, mode TEXT NOT NULL, amount INTEGER NOT NULL,
    product TEXT NOT NULL, product_name TEXT NOT NULL, artifact_hash TEXT NOT NULL, artifact_name TEXT NOT NULL,
    status TEXT NOT NULL DEFAULT 'CREATED', payment_key TEXT UNIQUE, secret_hash TEXT,
-   created_at INTEGER NOT NULL, checked_at INTEGER, approved_at TEXT, downloads INTEGER NOT NULL DEFAULT 0
+   created_at INTEGER NOT NULL, checked_at INTEGER, approved_at TEXT, downloads INTEGER NOT NULL DEFAULT 0,
+   verification_seq INTEGER NOT NULL DEFAULT 0, verified_seq INTEGER NOT NULL DEFAULT 0
   )`);
+  // Keep the existing orders, tokens and product files when upgrading an older database.
+  db.exec('BEGIN IMMEDIATE');
+  try{
+   const columns=new Set(db.prepare('PRAGMA table_info(orders)').all().map(column=>column.name));
+   for(const name of ['verification_seq','verified_seq'])if(!columns.has(name))db.exec('ALTER TABLE orders ADD COLUMN '+name+' INTEGER NOT NULL DEFAULT 0');
+   db.exec('COMMIT');
+  }catch(error){db.exec('ROLLBACK');db.close();throw error;}
  }
  const productDir=dbPath?path.join(path.dirname(dbPath),'products'):path.join(path.dirname(env.AIWORKJOB_STORE_DB||path.resolve('data/store.sqlite')),'products');
  function artifact(){const bytes=buildKit(),digest=hash(bytes);mkdirSync(productDir,{recursive:true});const filename=path.join(productDir,digest+'.zip');try{writeFileSync(filename,bytes,{flag:'wx',mode:0o600});}catch(err){if(err.code!=='EEXIST')throw err;const existing=readFileSync(filename);if(hash(existing)!==digest)fail(503,'상품 파일을 확인하지 못해 주문을 받지 않습니다.');}return digest;}
@@ -49,15 +57,19 @@ export function createStore({env=process.env,fetchImpl=globalThis.fetch,dbPath,n
   let response,payment;try{response=await fetchImpl('https://api.tosspayments.com/v1/payments'+endpoint,{method:body?'POST':'GET',headers:{Authorization:'Basic '+Buffer.from(env.TOSS_SECRET_KEY+':').toString('base64'),'Content-Type':'application/json',...(idempotencyKey?{'Idempotency-Key':idempotencyKey}:{})},...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(15000)});payment=await response.json();}catch{fail(503,'결제사 확인이 지연되고 있습니다. 재결제하지 말고 주문 상태를 다시 확인해 주세요.');}
   if(!response.ok)fail(502,'결제를 확인하지 못했습니다. 재결제 전에 결제 내역과 주문 상태를 확인해 주세요.');return payment;
  }
- function recordPayment(row,payment){
+ // SQLite allocates these across requests and server instances sharing the same DB.
+ const beginVerification=row=>db.prepare('UPDATE orders SET verification_seq=verification_seq+1 WHERE id=? RETURNING verification_seq').get(row.id).verification_seq;
+ function recordPayment(row,payment,sequence){
   if(!payment||payment.orderId!==row.id||payment.paymentKey!==row.payment_key||payment.currency!=='KRW'||payment.totalAmount!==row.amount||!Number.isSafeInteger(payment.balanceAmount)||payment.balanceAmount<0||payment.balanceAmount>row.amount)fail(502,'결제 정보가 주문과 일치하지 않아 파일을 제공하지 않았습니다.');
   if(!['READY','IN_PROGRESS','WAITING_FOR_DEPOSIT','DONE','CANCELED','PARTIAL_CANCELED','ABORTED','EXPIRED'].includes(payment.status))fail(502,'확인되지 않은 결제 상태입니다.');
   if(payment.status==='DONE'&&(payment.balanceAmount!==row.amount||!payment.approvedAt))fail(502,'결제 완료 금액을 확인하지 못했습니다.');
-  const secretHash=typeof payment.secret==='string'&&payment.secret?hash(payment.secret):row.secret_hash;
-  db.prepare('UPDATE orders SET status=?,secret_hash=?,approved_at=?,checked_at=? WHERE id=?').run(payment.status,secretHash,payment.approvedAt||null,now(),row.id);
-  return {row:orderById(row.id),payment};
+  const secretHash=typeof payment.secret==='string'&&payment.secret?hash(payment.secret):null;
+  // Only a validated response can advance verified_seq. A later failed lookup must
+  // not discard an earlier valid result; an older response must not revive a refund.
+  const result=db.prepare('UPDATE orders SET status=?,secret_hash=COALESCE(?,secret_hash),approved_at=?,checked_at=?,verified_seq=? WHERE id=? AND verified_seq<?').run(payment.status,secretHash,payment.approvedAt||null,now(),sequence,row.id,sequence);
+  return {row:orderById(row.id),payment:result.changes?payment:null};
  }
- const refresh=async row=>row.payment_key?recordPayment(row,await provider('/'+encodeURIComponent(row.payment_key))):{row,payment:null};
+ const refresh=async row=>{if(!row.payment_key)return {row,payment:null};const sequence=beginVerification(row);return recordPayment(row,await provider('/'+encodeURIComponent(row.payment_key)),sequence);};
  function view(row,payment){const virtual=payment?.virtualAccount;return {id:row.id,productName:row.product_name,amount:row.amount,currency:'KRW',status:row.status,test:row.mode==='test',downloadAvailable:row.status==='DONE',approvedAt:row.approved_at,checkedAt:row.checked_at,
   ...(row.status==='WAITING_FOR_DEPOSIT'&&virtual?{virtualAccount:{accountNumber:virtual.accountNumber,bankCode:virtual.bankCode,dueDate:virtual.dueDate}}:{})};}
  async function confirm(request,row,body){
@@ -69,12 +81,12 @@ export function createStore({env=process.env,fetchImpl=globalThis.fetch,dbPath,n
   const work=(async()=>{
    if(row.payment_key&&row.status!=='CONFIRMING'){const current=await refresh(row);return view(current.row,current.payment);}
    try{db.prepare("UPDATE orders SET payment_key=?,status='CONFIRMING' WHERE id=?").run(body.paymentKey,row.id);}catch{fail(409,'이미 다른 주문에 사용된 결제입니다.');}
-   row=orderById(row.id);let payment;
+   row=orderById(row.id);let payment,sequence=beginVerification(row);
    try{payment=await provider('/confirm',{paymentKey:body.paymentKey,orderId:row.id,amount:row.amount},row.id);}catch(error){
     // A timeout may occur after approval. Query the same payment; never invent a second order/charge.
-    try{payment=await provider('/'+encodeURIComponent(row.payment_key));}catch{throw error;}
+    try{sequence=beginVerification(row);payment=await provider('/'+encodeURIComponent(row.payment_key));}catch{throw error;}
    }
-   const current=recordPayment(row,payment);return view(current.row,current.payment);
+   const current=recordPayment(row,payment,sequence);return view(current.row,current.payment);
   })();inFlight.set(row.id,work);try{return json(await work);}finally{inFlight.delete(row.id);}
  }
  let bucket=0,created=0;

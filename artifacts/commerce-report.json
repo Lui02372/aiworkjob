@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "checks": [
     "store explains real product contents, sample, seller and test-only payment state",
     "sample opens before purchase without collecting payment details",
@@ -16,5 +16,5 @@
   ],
   "count": 11,
   "environment": "isolated mocked providers; no real charge, model invocation, bank account or income",
-  "checkedAt": "2026-10-29T15:27:56"
+  "checkedAt": "2026-10-29T17:14:39"
 }

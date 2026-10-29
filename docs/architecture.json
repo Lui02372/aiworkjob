@@ -110,7 +110,7 @@
       "id": "orders",
       "label": "Private SQLite orders and versioned product ZIP",
       "status": "implemented",
-      "description": "Order tokens are hashed; data stays in channel runtime and is excluded from release.",
+      "description": "Order tokens are hashed; data stays in channel runtime and is excluded from release. SQLite verification_seq/verified_seq retain the newest validated provider result across concurrent requests and server instances; legacy orders migrate in place. Temporary-DB regressions cover canceled downloads, restart and original product bytes; no live charge or settlement is verified.",
       "evidence": [
         "commerce.mjs",
         "tests/commerce.test.mjs"

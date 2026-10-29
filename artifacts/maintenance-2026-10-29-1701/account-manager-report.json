@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "version": "0.1.5",
+  "checks": [
+    "unknown AI permission blocks the mission flow before connecting to the vault",
+    "connected screen shows delegated accounts and model budget; account selection is required",
+    "starting and retrying an identical mission keeps one scoped upstream operation",
+    "result content is displayed as inert text and labeled an unreviewed draft",
+    "draft download preserves all workspace, delivery and manual-income fields",
+    "vault token stays out of the browser DOM and storage",
+    "vault lock failure is actionable and disables new missions",
+    "Pages output explains local-server requirement with no vault request, overflow or script error"
+  ],
+  "count": 8,
+  "environment": "isolated mocked providers; no real charge, model invocation, bank account or income",
+  "checkedAt": "2026-10-29T17:14:44"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checks": [
+    "literal dependency extraction",
+    "unresolved path reporting",
+    "private directory exclusion",
+    "offline HTML generation"
+  ]
+}

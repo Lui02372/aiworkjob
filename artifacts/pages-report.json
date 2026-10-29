@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "count": 23,
   "checks": [
     "static app loads attributed jobs without a backend API",
@@ -27,5 +27,5 @@
     "storage clear preserves pending input and stale editing cannot resurrect deleted work",
     "mobile main concurrency flow has no script errors or horizontal overflow"
   ],
-  "checkedAt": "2026-10-29T15:27:48"
+  "checkedAt": "2026-10-29T17:14:31"
 }
