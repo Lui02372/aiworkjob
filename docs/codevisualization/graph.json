@@ -1,0 +1,614 @@
+{
+  "generatedAt": "2026-10-29T00:59:56.544Z",
+  "scope": "First-party source inventory; excludes dependencies/builds/secrets/data directories. JS/TS literal relative import/require/file-URL edges only; heuristic, not complete semantic analysis. Java/Python inventoried but not resolved. No runtime connectivity claim.",
+  "files": [
+    "README.md",
+    "android/app/src/main/AndroidManifest.xml",
+    "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+    "android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java",
+    "android/app/src/main/res/drawable/ic_launcher.xml",
+    "android/app/src/main/res/values-v27/styles.xml",
+    "android/app/src/main/res/values/styles.xml",
+    "api.mjs",
+    "artifacts/android-report.json",
+    "artifacts/browser-report.json",
+    "artifacts/domain-report.json",
+    "artifacts/quality-report.json",
+    "docs/DESIGN.md",
+    "docs/IMPROVEMENTS.md",
+    "docs/ITERATION_PROMPT.md",
+    "docs/RESEARCH.md",
+    "docs/VALIDATION.md",
+    "docs/architecture.json",
+    "package.json",
+    "server.mjs",
+    "tests/check_android.py",
+    "tests/check_browser.py",
+    "tests/domain.test.mjs",
+    "tools/build-site.mjs",
+    "tools/codevisualization-viewer.html",
+    "tools/codevisualization.mjs",
+    "tools/quality.mjs",
+    "tools/validate-artifact.mjs",
+    "web/app.js",
+    "web/catalog.js",
+    "web/config.js",
+    "web/deliverable.css",
+    "web/deliverable.html",
+    "web/deliverable.js",
+    "web/domain.js",
+    "web/icons.js",
+    "web/index.html",
+    "web/snapshot.json",
+    "web/studio.css",
+    "web/studio.html",
+    "web/studio.js",
+    "web/styles.css"
+  ],
+  "edges": [
+    {
+      "from": "server.mjs",
+      "to": "api.mjs",
+      "kind": "import",
+      "line": 4,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/domain.test.mjs",
+      "to": "web/domain.js",
+      "kind": "import",
+      "line": 3,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tests/domain.test.mjs",
+      "to": "api.mjs",
+      "kind": "import",
+      "line": 4,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "tools/codevisualization.mjs",
+      "to": "tools/codevisualization-viewer.html",
+      "kind": "file-url",
+      "line": 32,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/app.js",
+      "to": "web/config.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/app.js",
+      "to": "web/catalog.js",
+      "kind": "import",
+      "line": 2,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/app.js",
+      "to": "web/domain.js",
+      "kind": "import",
+      "line": 3,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/app.js",
+      "to": "web/icons.js",
+      "kind": "import",
+      "line": 4,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/deliverable.js",
+      "to": "web/domain.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/domain.js",
+      "to": "web/catalog.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/studio.js",
+      "to": "web/config.js",
+      "kind": "import",
+      "line": 1,
+      "confidence": "static-heuristic"
+    },
+    {
+      "from": "web/studio.js",
+      "to": "web/domain.js",
+      "kind": "import",
+      "line": 2,
+      "confidence": "static-heuristic"
+    }
+  ],
+  "unresolved": [
+    {
+      "from": "server.mjs",
+      "spec": "./web/",
+      "line": 5,
+      "kind": "file-url"
+    },
+    {
+      "from": "server.mjs",
+      "spec": "./aiworkjob-debug.apk",
+      "line": 12,
+      "kind": "file-url"
+    }
+  ],
+  "signals": [
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 36
+    },
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 39
+    },
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 43
+    },
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 46
+    },
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 51
+    },
+    {
+      "file": "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java",
+      "kind": "loop",
+      "line": 57
+    },
+    {
+      "file": "api.mjs",
+      "kind": "network",
+      "line": 9
+    },
+    {
+      "file": "api.mjs",
+      "kind": "network",
+      "line": 16
+    },
+    {
+      "file": "api.mjs",
+      "kind": "loop",
+      "line": 25
+    },
+    {
+      "file": "api.mjs",
+      "kind": "loop",
+      "line": 25
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "network",
+      "line": 25
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "network",
+      "line": 28
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 32
+    },
+    {
+      "file": "tests/check_android.py",
+      "kind": "storage",
+      "line": 44
+    },
+    {
+      "file": "tests/domain.test.mjs",
+      "kind": "loop",
+      "line": 11
+    },
+    {
+      "file": "tests/domain.test.mjs",
+      "kind": "loop",
+      "line": 18
+    },
+    {
+      "file": "tools/build-site.mjs",
+      "kind": "network",
+      "line": 9
+    },
+    {
+      "file": "tools/build-site.mjs",
+      "kind": "loop",
+      "line": 5
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "storage",
+      "line": 18
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "storage",
+      "line": 18
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 11
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 14
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 17
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 17
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 18
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 18
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 23
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 23
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 24
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 27
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 27
+    },
+    {
+      "file": "tools/codevisualization.mjs",
+      "kind": "loop",
+      "line": 27
+    },
+    {
+      "file": "web/app.js",
+      "kind": "timer",
+      "line": 10
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 16
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 17
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 40
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 41
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 42
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 43
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 44
+    },
+    {
+      "file": "web/app.js",
+      "kind": "event",
+      "line": 45
+    },
+    {
+      "file": "web/app.js",
+      "kind": "network",
+      "line": 34
+    },
+    {
+      "file": "web/app.js",
+      "kind": "network",
+      "line": 34
+    },
+    {
+      "file": "web/app.js",
+      "kind": "network",
+      "line": 38
+    },
+    {
+      "file": "web/app.js",
+      "kind": "storage",
+      "line": 5
+    },
+    {
+      "file": "web/app.js",
+      "kind": "storage",
+      "line": 9
+    },
+    {
+      "file": "web/app.js",
+      "kind": "loop",
+      "line": 27
+    },
+    {
+      "file": "web/app.js",
+      "kind": "loop",
+      "line": 28
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "event",
+      "line": 15
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "event",
+      "line": 16
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "event",
+      "line": 17
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "event",
+      "line": 20
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "event",
+      "line": 22
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "storage",
+      "line": 13
+    },
+    {
+      "file": "web/deliverable.js",
+      "kind": "storage",
+      "line": 14
+    },
+    {
+      "file": "web/domain.js",
+      "kind": "loop",
+      "line": 41
+    },
+    {
+      "file": "web/domain.js",
+      "kind": "loop",
+      "line": 43
+    },
+    {
+      "file": "web/domain.js",
+      "kind": "loop",
+      "line": 53
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "event",
+      "line": 20
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "event",
+      "line": 25
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "storage",
+      "line": 12
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "storage",
+      "line": 14
+    },
+    {
+      "file": "web/studio.js",
+      "kind": "loop",
+      "line": 23
+    }
+  ],
+  "cycles": [],
+  "architecture": {
+    "nodes": [
+      {
+        "id": "ui",
+        "label": "공고 탐색·규칙 매칭·작업 기록",
+        "status": "implemented",
+        "evidence": [
+          "web/app.js",
+          "web/domain.js"
+        ]
+      },
+      {
+        "id": "web-api",
+        "label": "웹 공개 공고 어댑터",
+        "status": "implemented",
+        "evidence": [
+          "api.mjs",
+          "server.mjs"
+        ]
+      },
+      {
+        "id": "source",
+        "label": "Himalayas 공식 API",
+        "status": "conditional",
+        "description": "인터넷·제공자 가용성 필요. 실제 응답 확인은 artifacts 검증 기록 참조",
+        "evidence": [
+          "api.mjs"
+        ]
+      },
+      {
+        "id": "android",
+        "label": "Android 번들 UI·네이티브 수집",
+        "status": "implemented",
+        "evidence": [
+          "android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java",
+          "android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java"
+        ]
+      },
+      {
+        "id": "storage",
+        "label": "기기 localStorage·공개 피드 캐시",
+        "status": "implemented",
+        "evidence": [
+          "web/domain.js",
+          "web/app.js",
+          "api.mjs"
+        ]
+      },
+      {
+        "id": "studio",
+        "label": "5개 분야의 실행·검토 스튜디오",
+        "status": "implemented",
+        "evidence": [
+          "web/studio.js",
+          "web/studio.html"
+        ]
+      },
+      {
+        "id": "page",
+        "label": "제작 페이지·기능 시안·공유 링크",
+        "status": "implemented",
+        "evidence": [
+          "web/deliverable.js",
+          "web/deliverable.html",
+          "web/config.js"
+        ]
+      },
+      {
+        "id": "worker",
+        "label": "Sites Worker 게시 패키지",
+        "status": "implemented",
+        "evidence": [
+          "tools/build-site.mjs"
+        ]
+      },
+      {
+        "id": "future",
+        "label": "국내 API·클라우드 동기화·서버 LLM·결제",
+        "status": "planned",
+        "description": "설계 범위. 현재 미연결",
+        "evidence": [
+          "docs/RESEARCH.md"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "ui",
+        "to": "web-api",
+        "label": "/api/jobs 및 /api/check",
+        "status": "implemented"
+      },
+      {
+        "from": "web-api",
+        "to": "source",
+        "label": "공개 HTTPS 요청",
+        "status": "conditional"
+      },
+      {
+        "from": "android",
+        "to": "source",
+        "label": "고정 출처 어댑터",
+        "status": "conditional"
+      },
+      {
+        "from": "android",
+        "to": "ui",
+        "label": "번들 웹 자산",
+        "status": "implemented"
+      },
+      {
+        "from": "ui",
+        "to": "storage",
+        "label": "개인 기기 저장",
+        "status": "implemented"
+      },
+      {
+        "from": "ui",
+        "to": "studio",
+        "label": "허용 확인 후 작업 도구 링크",
+        "status": "implemented"
+      },
+      {
+        "from": "studio",
+        "to": "page",
+        "label": "본문을 포함한 미리보기 링크",
+        "status": "implemented"
+      },
+      {
+        "from": "ui",
+        "to": "page",
+        "label": "화면 편집기",
+        "status": "implemented"
+      },
+      {
+        "from": "worker",
+        "to": "web-api",
+        "label": "동일 API 코드 번들",
+        "status": "implemented"
+      },
+      {
+        "from": "ui",
+        "to": "future",
+        "label": "후속 통합",
+        "status": "planned"
+      }
+    ]
+  }
+}

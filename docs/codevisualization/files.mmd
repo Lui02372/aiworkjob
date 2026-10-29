@@ -1,0 +1,55 @@
+flowchart LR
+ n0["README.md"]
+ n1["android/app/src/main/AndroidManifest.xml"]
+ n2["android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java"]
+ n3["android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java"]
+ n4["android/app/src/main/res/drawable/ic_launcher.xml"]
+ n5["android/app/src/main/res/values-v27/styles.xml"]
+ n6["android/app/src/main/res/values/styles.xml"]
+ n7["api.mjs"]
+ n8["artifacts/android-report.json"]
+ n9["artifacts/browser-report.json"]
+ n10["artifacts/domain-report.json"]
+ n11["artifacts/quality-report.json"]
+ n12["docs/DESIGN.md"]
+ n13["docs/IMPROVEMENTS.md"]
+ n14["docs/ITERATION_PROMPT.md"]
+ n15["docs/RESEARCH.md"]
+ n16["docs/VALIDATION.md"]
+ n17["docs/architecture.json"]
+ n18["package.json"]
+ n19["server.mjs"]
+ n20["tests/check_android.py"]
+ n21["tests/check_browser.py"]
+ n22["tests/domain.test.mjs"]
+ n23["tools/build-site.mjs"]
+ n24["tools/codevisualization-viewer.html"]
+ n25["tools/codevisualization.mjs"]
+ n26["tools/quality.mjs"]
+ n27["tools/validate-artifact.mjs"]
+ n28["web/app.js"]
+ n29["web/catalog.js"]
+ n30["web/config.js"]
+ n31["web/deliverable.css"]
+ n32["web/deliverable.html"]
+ n33["web/deliverable.js"]
+ n34["web/domain.js"]
+ n35["web/icons.js"]
+ n36["web/index.html"]
+ n37["web/snapshot.json"]
+ n38["web/studio.css"]
+ n39["web/studio.html"]
+ n40["web/studio.js"]
+ n41["web/styles.css"]
+ n19 -->|import| n7
+ n22 -->|import| n34
+ n22 -->|import| n7
+ n25 -->|file-url| n24
+ n28 -->|import| n30
+ n28 -->|import| n29
+ n28 -->|import| n34
+ n28 -->|import| n35
+ n33 -->|import| n34
+ n34 -->|import| n29
+ n40 -->|import| n30
+ n40 -->|import| n34

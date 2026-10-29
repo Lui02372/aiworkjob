@@ -1,0 +1,13 @@
+{
+  "name": "aiworkjob",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/domain.test.mjs",
+    "test:browser": "python tests/check_browser.py",
+    "map": "node tools/codevisualization.mjs . docs/codevisualization docs/architecture.json",
+    "build": "node tools/build-site.mjs"
+  }
+}

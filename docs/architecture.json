@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {"id":"ui","label":"공고 탐색·규칙 매칭·작업 기록","status":"implemented","evidence":["web/app.js","web/domain.js"]},
+    {"id":"web-api","label":"웹 공개 공고 어댑터","status":"implemented","evidence":["api.mjs","server.mjs"]},
+    {"id":"source","label":"Himalayas 공식 API","status":"conditional","description":"인터넷·제공자 가용성 필요. 실제 응답 확인은 artifacts 검증 기록 참조","evidence":["api.mjs"]},
+    {"id":"android","label":"Android 번들 UI·네이티브 수집","status":"implemented","evidence":["android/app/src/main/java/com/projectlist/aiworkjob/MainActivity.java","android/app/src/main/java/com/projectlist/aiworkjob/JobRepository.java"]},
+    {"id":"storage","label":"기기 localStorage·공개 피드 캐시","status":"implemented","evidence":["web/domain.js","web/app.js","api.mjs"]},
+    {"id":"studio","label":"5개 분야의 실행·검토 스튜디오","status":"implemented","evidence":["web/studio.js","web/studio.html"]},
+    {"id":"page","label":"제작 페이지·기능 시안·공유 링크","status":"implemented","evidence":["web/deliverable.js","web/deliverable.html","web/config.js"]},
+    {"id":"worker","label":"Sites Worker 게시 패키지","status":"implemented","evidence":["tools/build-site.mjs"]},
+    {"id":"future","label":"국내 API·클라우드 동기화·서버 LLM·결제","status":"planned","description":"설계 범위. 현재 미연결","evidence":["docs/RESEARCH.md"]}
+  ],
+  "edges":[
+    {"from":"ui","to":"web-api","label":"/api/jobs 및 /api/check","status":"implemented"},
+    {"from":"web-api","to":"source","label":"공개 HTTPS 요청","status":"conditional"},
+    {"from":"android","to":"source","label":"고정 출처 어댑터","status":"conditional"},
+    {"from":"android","to":"ui","label":"번들 웹 자산","status":"implemented"},
+    {"from":"ui","to":"storage","label":"개인 기기 저장","status":"implemented"},
+    {"from":"ui","to":"studio","label":"허용 확인 후 작업 도구 링크","status":"implemented"},
+    {"from":"studio","to":"page","label":"본문을 포함한 미리보기 링크","status":"implemented"},
+    {"from":"ui","to":"page","label":"화면 편집기","status":"implemented"},
+    {"from":"worker","to":"web-api","label":"동일 API 코드 번들","status":"implemented"},
+    {"from":"ui","to":"future","label":"후속 통합","status":"planned"}
+  ]
+}
